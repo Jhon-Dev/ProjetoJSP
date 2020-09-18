@@ -11,5 +11,10 @@
 
  "Nome recebido: " + request.getParameter("nome")
 %>
+
+
+<%! int cont = 2; %>
+
+<%= cont %>
 </body>
 </html>
