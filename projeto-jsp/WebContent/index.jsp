@@ -18,12 +18,6 @@
 <body>
 
 
-
-<p/>
-<p/>
-<p/>
-<p/>
-
 	<form action="LoginServlet" method="post">
 		Login:
 		 <input type ="text" id="login" name="login">

@@ -7,7 +7,7 @@ public class BeanCursoJsp {
 
 	private String senha;
 
-	public boolean validaLoginSenha(String login, String senha) {
+	public boolean validaLoginSenhar(String login, String senha) {
 		
 		if(login.equalsIgnoreCase("admin") && senha.equalsIgnoreCase("admin")) {
 			
