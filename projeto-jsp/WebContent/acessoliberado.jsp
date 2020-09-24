@@ -12,5 +12,7 @@
 
 	<h3>Seja bem vindo ao sistema JSP</h3>
 
+	<a href="cadastroUsuario.jsp">Cadastro de usuários</a>
+
 </body>
 </html>
