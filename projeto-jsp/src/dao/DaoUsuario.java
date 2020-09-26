@@ -59,4 +59,23 @@ public class DaoUsuario {
 
 		return listar;
 	}
+	
+	public void delete (String login ) {
+		try {
+		String sql = "delete from usuario where login = '" + login + "'";
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		preparedStatement.execute();
+		
+		connection.commit();
+		}catch (Exception e) {
+			e.printStackTrace();
+			
+			try {
+				connection.rollback();
+				
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
 }
