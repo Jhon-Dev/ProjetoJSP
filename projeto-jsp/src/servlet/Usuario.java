@@ -48,6 +48,12 @@ public class Usuario extends HttpServlet {
 				request.setAttribute("user", beanCursoJsp);
 				view.forward(request, response);
 
+			} else if (acao.equalsIgnoreCase("listartodos")) {
+
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
+
 			}
 
 		} catch (Exception e) {

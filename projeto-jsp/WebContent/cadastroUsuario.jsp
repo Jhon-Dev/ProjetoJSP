@@ -72,10 +72,10 @@
 
 					<td><c:out value="${user.nome}"></c:out></td>
 
-					<td><a href="salvarUsuario?acao=delete&user=${user.login}"><img
+					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img
 							src="resources/img/Excluir.png" alt="Exluir" title="Exluir"
 							width="20px" height="20px"></a></td>
-					<td><a href="salvarUsuario?acao=editar&user=${user.login}"><img
+					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img
 							src="resources/img/Editar.png" alt="Editar" title="Editar"
 							width="20px" height="20px"></a></td>
 				</tr>
