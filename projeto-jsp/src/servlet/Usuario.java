@@ -64,10 +64,13 @@ public class Usuario extends HttpServlet {
 
 		String senha = request.getParameter("senha");
 
+		String nome = request.getParameter("nome");
+
 		BeanCursoJsp usuario = new BeanCursoJsp();
 		usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
 		usuario.setLogin(login);
 		usuario.setSenha(senha);
+		usuario.setNome(nome);
 
 		if (id == null || id.isEmpty()) {
 			daoUsuario.salvar(usuario);

@@ -3,12 +3,20 @@ package beans;
 public class BeanCursoJsp {
 
 	private Long id;
-	
+
 	private String login;
 
 	private String senha;
-	
-	
+
+	private String nome;
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public String getNome() {
+		return nome;
+	}
 
 	public Long getId() {
 		return id;
