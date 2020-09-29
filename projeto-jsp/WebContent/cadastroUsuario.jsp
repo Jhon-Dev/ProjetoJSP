@@ -13,8 +13,8 @@
 <body>
 	<center>
 		<h1>Cadastro de Usuário</h1>
+		<h3 style="color: red;">  ${msg}</h3>
 	</center>
-
 	<form action="salvarUsuario" method="post" id="formUser">
 		<ul class="form-style-1">
 			<li>

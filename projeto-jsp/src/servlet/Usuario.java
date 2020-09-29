@@ -94,13 +94,19 @@ public class Usuario extends HttpServlet {
 			usuario.setNome(nome);
 			try {
 
-				if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
-					daoUsuario.salvar(usuario);
-					
-				} else if (id != null && !id.isEmpty()) {
-
-					daoUsuario.atualizar(usuario);
+				if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
+				
+					request.setAttribute("msg", "Usuário já existe com o mesmo Login!");
 				}
+
+					if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
+
+						daoUsuario.salvar(usuario);
+
+					} else if (id != null && !id.isEmpty()) {
+
+						daoUsuario.atualizar(usuario);
+					}
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
