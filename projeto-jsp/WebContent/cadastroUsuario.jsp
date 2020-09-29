@@ -13,7 +13,7 @@
 <body>
 	<center>
 		<h1>Cadastro de Usuário</h1>
-		<h3 style="color: red;">  ${msg}</h3>
+		<h3 style="color: red;">${msg}</h3>
 	</center>
 	<form action="salvarUsuario" method="post" id="formUser">
 		<ul class="form-style-1">
@@ -40,8 +40,15 @@
 							value="${user.nome}"></td>
 					</tr>
 					<tr>
+						<td>Fone:</td>
+						<td><input type="text" id="fone" name="fone"
+							value="${user.fone}"></td>
+					</tr>
+					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar"> <input type="submit"  value="Cancelar" onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'" ></td>
+						<td><input type="submit" value="Salvar"> <input
+							type="submit" value="Cancelar"
+							onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'"></td>
 
 					</tr>
 				</table>
@@ -57,6 +64,7 @@
 				<th>Id</th>
 				<th>Login</th>
 				<th>Nome</th>
+				<th>Fone</th>
 				<th>Excluir</th>
 				<th>Editar</th>
 
@@ -71,6 +79,8 @@
 					</td>
 
 					<td><c:out value="${user.nome}"></c:out></td>
+					<td><c:out value="${user.fone}"></c:out></td>
+
 
 					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img
 							src="resources/img/Excluir.png" alt="Exluir" title="Exluir"

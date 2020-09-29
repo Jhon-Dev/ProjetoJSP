@@ -23,11 +23,12 @@ public class DaoUsuario {
 
 		try {
 
-			String sql = "insert into usuario(login, senha, nome) values (?, ?, ?)";
+			String sql = "insert into usuario(login, senha, nome, fone) values (?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
 			insert.setString(3, usuario.getNome());
+			insert.setString(4, usuario.getFone());
 			insert.execute();
 			connection.commit();
 
@@ -57,6 +58,7 @@ public class DaoUsuario {
 			beanCursoJsp.setLogin(resultSet.getString("login"));
 			beanCursoJsp.setSenha(resultSet.getString("senha"));
 			beanCursoJsp.setNome(resultSet.getString("nome"));
+			beanCursoJsp.setFone(resultSet.getString("fone"));
 
 			listar.add(beanCursoJsp);
 		}
@@ -95,6 +97,8 @@ public class DaoUsuario {
 			beanCursoJsp.setLogin(resultSet.getString("login"));
 			beanCursoJsp.setSenha(resultSet.getString("senha"));
 			beanCursoJsp.setNome(resultSet.getString("nome"));
+			beanCursoJsp.setFone(resultSet.getString("fone"));
+
 			
 
 
@@ -127,7 +131,7 @@ public class DaoUsuario {
 
 	public void atualizar(BeanCursoJsp usuario) {
 		
-		String sql = "update usuario set login = ?, senha = ?, nome = ? where id = " + usuario.getId();
+		String sql = "update usuario set login = ?, senha = ?, nome = ?, fone = ? where id = " + usuario.getId();
 		
 		try {
 
@@ -136,6 +140,7 @@ public class DaoUsuario {
 			preparedStatement.setString(1, usuario.getLogin());
 			preparedStatement.setString(2, usuario.getSenha());
 			preparedStatement.setString(3, usuario.getNome());
+			preparedStatement.setString(4, usuario.getFone());
 			
 			preparedStatement.executeUpdate();
 			connection.commit();	
