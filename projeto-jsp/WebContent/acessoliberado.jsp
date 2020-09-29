@@ -12,7 +12,10 @@
 
 	<h3>Seja bem vindo ao sistema JSP</h3>
 
-	<a href="salvarUsuario?acao=listartodos">Cadastro de usuários</a>
+	<a href="salvarUsuario?acao=listartodos"><img alt="Cadastro"
+		title="Cadastro" src="resources/img/cadastro.png" width="100"
+		height="100"></a>
+
 
 </body>
 </html>
