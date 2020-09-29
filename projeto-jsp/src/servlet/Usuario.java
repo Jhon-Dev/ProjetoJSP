@@ -64,36 +64,51 @@ public class Usuario extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		String id = request.getParameter("id");
+		String acao = request.getParameter("acao");
 
-		String login = request.getParameter("login");
+		if (acao != null && acao.equalsIgnoreCase("reset")) {
+			try {
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
 
-		String senha = request.getParameter("senha");
+			} catch (Exception e) {
+				e.printStackTrace();
 
-		String nome = request.getParameter("nome");
+			}
 
-		BeanCursoJsp usuario = new BeanCursoJsp();
-		usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
-		usuario.setLogin(login);
-		usuario.setSenha(senha);
-		usuario.setNome(nome);
-
-		if (id == null || id.isEmpty()) {
-			daoUsuario.salvar(usuario);
 		} else {
 
-			daoUsuario.atualizar(usuario);
-		}
+			String id = request.getParameter("id");
 
-		try {
-			RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
-			request.setAttribute("usuarios", daoUsuario.listar());
-			view.forward(request, response);
+			String login = request.getParameter("login");
 
-		} catch (Exception e) {
-			e.printStackTrace();
+			String senha = request.getParameter("senha");
 
+			String nome = request.getParameter("nome");
+
+			BeanCursoJsp usuario = new BeanCursoJsp();
+			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
+			usuario.setLogin(login);
+			usuario.setSenha(senha);
+			usuario.setNome(nome);
+
+			if (id == null || id.isEmpty()) {
+				daoUsuario.salvar(usuario);
+			} else {
+
+				daoUsuario.atualizar(usuario);
+			}
+
+			try {
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
+
+			} catch (Exception e) {
+				e.printStackTrace();
+
+			}
 		}
 	}
-
 }

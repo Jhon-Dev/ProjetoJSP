@@ -15,7 +15,7 @@
 		<h1>Cadastro de Usuário</h1>
 	</center>
 
-	<form action="salvarUsuario" method="post">
+	<form action="salvarUsuario" method="post" id="formUser">
 		<ul class="form-style-1">
 			<li>
 				<table>
@@ -41,7 +41,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar"></td>
+						<td><input type="submit" value="Salvar"> <input type="submit"  value="Cancelar" onclick="document.getElementById('formUser').action = 'salvarUsuario?acao=reset'" ></td>
 
 					</tr>
 				</table>
