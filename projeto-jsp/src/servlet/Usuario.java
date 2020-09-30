@@ -90,7 +90,7 @@ public class Usuario extends HttpServlet {
 			String fone = request.getParameter("fone");
 
 			BeanCursoJsp usuario = new BeanCursoJsp();
-			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
+			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : null);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
@@ -125,6 +125,10 @@ public class Usuario extends HttpServlet {
 					daoUsuario.atualizar(usuario);
 				}
 
+				if (!podeInserir) {
+					request.setAttribute("user", usuario);
+				}
+				
 				RequestDispatcher view = request
 						.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
