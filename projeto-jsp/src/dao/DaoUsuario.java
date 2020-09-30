@@ -99,16 +99,12 @@ public class DaoUsuario {
 			beanCursoJsp.setNome(resultSet.getString("nome"));
 			beanCursoJsp.setFone(resultSet.getString("fone"));
 
-			
-
-
 			return beanCursoJsp;
 		}
 
-
 		return null;
 	}
-	
+
 	public boolean validarLogin(String login) throws SQLException {
 		String sql = "select count(1) as qtd from usuario where login ='" + login + "'";
 
@@ -122,9 +118,10 @@ public class DaoUsuario {
 
 		return false;
 	}
-
 	
-	public boolean  validarLoginUpdate(String login, String id) throws SQLException {
+	
+
+	public boolean validarLoginUpdate(String login, String id) throws SQLException {
 		String sql = "select count(1) as qtd from usuario where login ='" + login + "' and id <> " + id;
 
 		PreparedStatement statement = connection.prepareStatement(sql);
@@ -132,34 +129,40 @@ public class DaoUsuario {
 
 		if (resultSet.next()) {
 
-			
-
-
-			return resultSet.getInt("qtd") <= 0;  /*Return true*/
+			return resultSet.getInt("qtd") <= 0; /* Return true */
 		}
-
 
 		return false;
 	}
 
+	public boolean validarSenha(String senha) throws Exception {
+		String sql = "select count(1) as qtd from usuario where senha='" + senha + "'";
 
+		PreparedStatement preparedStatement = connection.prepareStatement(sql);
+		ResultSet resultSet = preparedStatement.executeQuery();
+		if (resultSet.next()) {
+
+			return resultSet.getInt("qtd") <= 0;/* Return true */
+		}
+		return false;
+	}
 
 	public void atualizar(BeanCursoJsp usuario) {
-		
+
 		String sql = "update usuario set login = ?, senha = ?, nome = ?, fone = ? where id = " + usuario.getId();
-		
+
 		try {
 
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
-			
+
 			preparedStatement.setString(1, usuario.getLogin());
 			preparedStatement.setString(2, usuario.getSenha());
 			preparedStatement.setString(3, usuario.getNome());
 			preparedStatement.setString(4, usuario.getFone());
-			
+
 			preparedStatement.executeUpdate();
-			connection.commit();	
-			
+			connection.commit();
+
 		} catch (Exception e) {
 			e.printStackTrace();
 			try {

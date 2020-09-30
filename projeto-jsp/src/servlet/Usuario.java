@@ -98,32 +98,44 @@ public class Usuario extends HttpServlet {
 
 			try {
 
-				if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
+				String msg = null;
+				boolean podeInserir = true;
 
-					request.setAttribute("msg", "Login já existe para outro usuário");
+				if (id == null || id.isEmpty()
+						&& !daoUsuario.validarLogin(login)) {//QUANDO DOR USUÁRIO NOVO
+					msg = "Usuário já existe com o mesmo login!";
+					podeInserir = false;
+
+				} else if (id == null || id.isEmpty()
+						&& !daoUsuario.validarSenha(senha)) {// QUANDO FOR USUÁRIO NOVO
+					msg = "\n A senha já existe para outro usuário!";
+					podeInserir = false;
 				}
 
-				if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
+				if (msg != null) {
+					request.setAttribute("msg", msg);
+				}
+
+				if (id == null || id.isEmpty()
+						&& daoUsuario.validarLogin(login) && podeInserir) {
 
 					daoUsuario.salvar(usuario);
 
-				} else if (id != null && !id.isEmpty() && daoUsuario.validarLoginUpdate(login, id)) {
-
+				} else if (id != null && !id.isEmpty() && podeInserir) {
 					daoUsuario.atualizar(usuario);
-				} else {
-
-					request.setAttribute("msg", "Login já existe para outro usuário");
-
 				}
 
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				RequestDispatcher view = request
+						.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 
 			} catch (Exception e) {
 				e.printStackTrace();
-
 			}
+
 		}
+
 	}
+
 }

@@ -1,0 +1,107 @@
+[33mcommit 47c3da15c920649bcb37b570a69f53471b86be52[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Tue Sep 29 02:07:39 2020 -0300
+
+    Adicionando imagem no menu de cadastro de usuário
+
+[33mcommit 2358b2c51fda20c1a3426b3b000a671da6ebbcbc[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Tue Sep 29 02:05:21 2020 -0300
+
+    Adicionando campo de telefone ao cadastro
+
+[33mcommit 9574382ca2c3cdf684179d5f08bbe54b53c5b919[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Tue Sep 29 01:10:32 2020 -0300
+
+    Mostrando mensagem de validação para o usuário
+
+[33mcommit f3f7605258a8c213d92c508932dc6808359c7417[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Tue Sep 29 00:36:29 2020 -0300
+
+    Criando validação de LOGIN duplicado
+
+[33mcommit 8aae2537028c013dcbe7b892fe59c0f233f32abb[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Mon Sep 28 23:54:17 2020 -0300
+
+    Melhorando nosso cadastro JSP + Servlets e Adicionando botão 'Cancelar'
+
+[33mcommit 078380dae71395a0929d56159b4da4bb94bca223[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Mon Sep 28 13:51:30 2020 -0300
+
+    arrumando edição de usuário, pegando por ID ao inves de Login
+
+[33mcommit a0f8357aa678697f8fbc8b44042ea1ce3bd92e20[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Mon Sep 28 09:18:43 2020 -0300
+
+    Adicionando campo de nome no cadastro
+
+[33mcommit 99fb3582dfb7967d2eaa6ced2b9834613cab8a99[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Mon Sep 28 01:03:30 2020 -0300
+
+    Adicionando Layout CSS ao nosso projeto JSP
+
+[33mcommit 2a5f5e063eae208ca42373595b699118eece83ae[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Sun Sep 27 16:47:24 2020 -0300
+
+    Adicionando Edit usuário com JDBC e JSP
+
+[33mcommit bda23ed0273e84ef26e24a69ec7ccefad0c2e757[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Sat Sep 26 01:23:12 2020 -0300
+
+    Excluindo usuário em JDBC e JSP
+
+[33mcommit 65718a257380feac064d88296fd434c76a49ea0e[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Sat Sep 26 00:45:01 2020 -0300
+
+    Inserindo usuário em JDBC 2
+
+[33mcommit 4f47ecb265f3873515ef32fba9657f2bcbd3f30f[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Thu Sep 24 01:14:48 2020 -0300
+
+    Login com JDBC e Servlets, Inserindo usuário em JDBC e JSP
+
+[33mcommit 568b93456a69c0c0a516a8311b20f38d3597200c[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Wed Sep 23 09:23:34 2020 -0300
+
+    Login com JDBC e Servlets
+
+[33mcommit 3cf6240bfb21e411b4a19153f0eaa724513a5a8d[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Mon Sep 21 01:40:07 2020 -0300
+
+    Filter e conexão em JDBC 2
+
+[33mcommit ca588b427416eda02740d36c59963baac895c840[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Mon Sep 21 00:25:45 2020 -0300
+
+    Adicionado alguns ajustes e conexão com o banco
+
+[33mcommit a36a32a4e61b764c549c63b557c7f4a167bf4f06[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Fri Sep 18 00:41:04 2020 -0300
+
+    Tag declarativa
+
+[33mcommit c7e233cd4fabcbbbd470d578c2a1b3bafe9ebd8f[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Fri Sep 18 00:30:40 2020 -0300
+
+    Tag Expressão
+
+[33mcommit 131eb392c677ed45d0eb03a8c0aac403e1afe63c[m
+Author: Jhonatan Nuss <jhonatan.nuss082897@gmail.com>
+Date:   Thu Sep 17 23:47:37 2020 -0300
+
+    Passando parâmetros
