@@ -109,8 +109,23 @@ public class DaoUsuario {
 		return null;
 	}
 	
-	public boolean  validarLogin(String login) throws SQLException {
+	public boolean validarLogin(String login) throws SQLException {
 		String sql = "select count(1) as qtd from usuario where login ='" + login + "'";
+
+		PreparedStatement statement = connection.prepareStatement(sql);
+		ResultSet resultSet = statement.executeQuery();
+
+		if (resultSet.next()) {
+
+			return resultSet.getInt("qtd") <= 0; /* Return true */
+		}
+
+		return false;
+	}
+
+	
+	public boolean  validarLoginUpdate(String login, String id) throws SQLException {
+		String sql = "select count(1) as qtd from usuario where login ='" + login + "' and id <> " + id;
 
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();

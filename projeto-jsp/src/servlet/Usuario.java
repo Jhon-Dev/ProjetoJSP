@@ -86,9 +86,8 @@ public class Usuario extends HttpServlet {
 			String senha = request.getParameter("senha");
 
 			String nome = request.getParameter("nome");
-			
-			String fone = request.getParameter("fone");
 
+			String fone = request.getParameter("fone");
 
 			BeanCursoJsp usuario = new BeanCursoJsp();
 			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : 0);
@@ -97,22 +96,25 @@ public class Usuario extends HttpServlet {
 			usuario.setNome(nome);
 			usuario.setFone(fone);
 
-
 			try {
 
 				if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {
-				
-					request.setAttribute("msg", "Usuário já existe com o mesmo Login!");
+
+					request.setAttribute("msg", "Login já existe para outro usuário");
 				}
 
-					if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
+				if (id == null || id.isEmpty() && daoUsuario.validarLogin(login)) {
 
-						daoUsuario.salvar(usuario);
+					daoUsuario.salvar(usuario);
 
-					} else if (id != null && !id.isEmpty()) {
+				} else if (id != null && !id.isEmpty() && daoUsuario.validarLoginUpdate(login, id)) {
 
-						daoUsuario.atualizar(usuario);
-					}
+					daoUsuario.atualizar(usuario);
+				} else {
+
+					request.setAttribute("msg", "Login já existe para outro usuário");
+
+				}
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
