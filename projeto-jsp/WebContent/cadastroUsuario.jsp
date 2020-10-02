@@ -7,7 +7,7 @@
 <meta charset="ISO-8859-1">
 
 
-<title>Cadastro de usuário</title>
+<title>Cadastro de Usuário</title>
 <link rel="stylesheet" href="resources/css/cadastro.css">
 </head>
 <body>

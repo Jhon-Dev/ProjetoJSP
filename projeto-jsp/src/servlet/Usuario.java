@@ -12,9 +12,6 @@ import javax.servlet.http.HttpServletResponse;
 import beans.BeanCursoJsp;
 import dao.DaoUsuario;
 
-/**
- * Servlet implementation class Usuario
- */
 @WebServlet("/salvarUsuario")
 public class Usuario extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -25,35 +22,32 @@ public class Usuario extends HttpServlet {
 		super();
 	}
 
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
-
+	protected void doGet(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 		try {
 			String acao = request.getParameter("acao");
-
 			String user = request.getParameter("user");
 
 			if (acao.equalsIgnoreCase("delete")) {
 				daoUsuario.delete(user);
-
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				RequestDispatcher view = request
+						.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
-
 			} else if (acao.equalsIgnoreCase("editar")) {
 
 				BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
 
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				RequestDispatcher view = request
+						.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("user", beanCursoJsp);
 				view.forward(request, response);
-
 			} else if (acao.equalsIgnoreCase("listartodos")) {
 
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				RequestDispatcher view = request
+						.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
-
 			}
 
 		} catch (Exception e) {
@@ -61,41 +55,35 @@ public class Usuario extends HttpServlet {
 		}
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request,
+			HttpServletResponse response) throws ServletException, IOException {
 
 		String acao = request.getParameter("acao");
 
 		if (acao != null && acao.equalsIgnoreCase("reset")) {
 			try {
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				RequestDispatcher view = request
+						.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 
 			} catch (Exception e) {
 				e.printStackTrace();
-
 			}
-
 		} else {
 
 			String id = request.getParameter("id");
-
 			String login = request.getParameter("login");
-
 			String senha = request.getParameter("senha");
-
 			String nome = request.getParameter("nome");
-
-			String fone = request.getParameter("fone");
+			String telefone = request.getParameter("telefone");
 
 			BeanCursoJsp usuario = new BeanCursoJsp();
 			usuario.setId(!id.isEmpty() ? Long.parseLong(id) : null);
 			usuario.setLogin(login);
 			usuario.setSenha(senha);
 			usuario.setNome(nome);
-			usuario.setFone(fone);
-
+			usuario.setFone(telefone);
 			try {
 
 				String msg = null;
@@ -124,11 +112,11 @@ public class Usuario extends HttpServlet {
 				} else if (id != null && !id.isEmpty() && podeInserir) {
 					daoUsuario.atualizar(usuario);
 				}
-
-				if (!podeInserir) {
+				
+				if (!podeInserir){
 					request.setAttribute("user", usuario);
 				}
-				
+
 				RequestDispatcher view = request
 						.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
