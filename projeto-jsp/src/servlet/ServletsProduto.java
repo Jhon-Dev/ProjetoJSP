@@ -13,44 +13,38 @@ import beans.Produto;
 import dao.DaoProduto;
 
 @WebServlet("/salvarProduto")
-public class ProdutoServlet extends HttpServlet {
+public class ServletsProduto extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	private DaoProduto daoProduto = new DaoProduto();
 
-	public ProdutoServlet() {
+	public ServletsProduto() {
 		super();
 	}
 
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-
 		try {
 			String acao = request.getParameter("acao");
-
 			String produto = request.getParameter("produto");
 
 			if (acao.equalsIgnoreCase("delete")) {
 				daoProduto.delete(produto);
-
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
 				request.setAttribute("produtos", daoProduto.listar());
 				view.forward(request, response);
-
 			} else if (acao.equalsIgnoreCase("editar")) {
 
-				Produto prod = daoProduto.consultar(produto);
+				Produto beanCursoJsp = daoProduto.consultar(produto);
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
-				request.setAttribute("produto", prod);
+				request.setAttribute("produto", beanCursoJsp);
 				view.forward(request, response);
-
 			} else if (acao.equalsIgnoreCase("listartodos")) {
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
 				request.setAttribute("produtos", daoProduto.listar());
 				view.forward(request, response);
-
 			}
 
 		} catch (Exception e) {
@@ -71,42 +65,54 @@ public class ProdutoServlet extends HttpServlet {
 
 			} catch (Exception e) {
 				e.printStackTrace();
-
 			}
-
 		} else {
 
 			String id = request.getParameter("id");
-
 			String nome = request.getParameter("nome");
-
 			String quantidade = request.getParameter("quantidade");
-
 			String valor = request.getParameter("valor");
-
-			Produto produto = new Produto();
-
-			produto.setId(!id.isEmpty() ? Long.parseLong(id) : null);
-			produto.setNome(nome);
-			produto.setQuantidade(Double.parseDouble(quantidade));
-			produto.setValor(Double.parseDouble(valor));
 
 			try {
 
 				String msg = null;
 				boolean podeInserir = true;
 
-				if (id == null || id.isEmpty() && !daoProduto.validarNome(nome)) {// QUANDO FOT PRODUTO NOVO
-
-					msg = "esse produto já existe!";
+				if (valor == null || valor.isEmpty()) {
+					msg = "Valor R$ deve ser informado";
 					podeInserir = false;
+
+				} else if (quantidade == null || quantidade.isEmpty()) {
+					msg = "Quantidade deve ser informado";
+					podeInserir = false;
+
+				} else if (nome == null || nome.isEmpty()) {
+					msg = "Nome deve ser informado";
+					podeInserir = false;
+
+				} else if (id == null || id.isEmpty() && !daoProduto.validarNome(nome)) {// QUANDO
+																							// FDOR
+																							// PRODUTO
+																							// NOVO
+					msg = "Produto já existe com o mesmo nome!";
+					podeInserir = false;
+
 				}
+
+				Produto produto = new Produto();
+				produto.setNome(nome);
+				produto.setId(!id.isEmpty() ? Long.parseLong(id) : null);
+
+				if (quantidade != null && !quantidade.isEmpty()) {
+					produto.setQuantidade(Double.parseDouble(quantidade));
+				}
+
+				if (valor != null && !valor.isEmpty())
+					produto.setValor(Double.parseDouble(valor));
 
 				if (msg != null) {
 					request.setAttribute("msg", msg);
-				}
-
-				if (id == null || id.isEmpty() && daoProduto.validarNome(nome) && podeInserir) {
+				} else if (id == null || id.isEmpty() && daoProduto.validarNome(nome) && podeInserir) {
 
 					daoProduto.salvar(produto);
 
@@ -125,7 +131,9 @@ public class ProdutoServlet extends HttpServlet {
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
+
 		}
 
 	}
+
 }
