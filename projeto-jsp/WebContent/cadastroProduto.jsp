@@ -1,50 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-	<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta charset="ISO-8859-1">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro de Produto</title>
 <link rel="stylesheet" href="resources/css/cadastro.css">
 </head>
 <body>
 	<center>
-		<h1>Cadastro de Produtos</h1>
-		<h3 style="color: red;">${msg}</h3>
+		<h1>Cadastro de Produto</h1>
+		<h3 style="color: orange;">${msg}</h3>
 	</center>
 
-
-	<form action="salvarProduto" method="post" id="formCadastro">
+	<form action="salvarProduto" method="post" id="formProduto"
+		onsubmit="return validarCampos() ? true : false;">
 		<ul class="form-style-1">
 			<li>
 				<table>
 					<tr>
-						<td>ID:</td>
+						<td>Código:</td>
 						<td><input type="text" readonly="readonly" id="id" name="id"
-							aria-label="id" value="${produto.id}" class="field-long"></td>
+							value="${produto.id}" class="field-long"></td>
 					</tr>
 					<tr>
 						<td>Nome:</td>
 						<td><input type="text" id="nome" name="nome"
 							value="${produto.nome}"></td>
 					</tr>
+
 					<tr>
 						<td>Quantidade:</td>
 						<td><input type="text" id="quantidade" name="quantidade"
 							value="${produto.quantidade}"></td>
 					</tr>
 					<tr>
-						<td>Valor:</td>
+						<td>Valor R$:</td>
 						<td><input type="text" id="valor" name="valor"
 							value="${produto.valor}"></td>
-					</tr>
 					<tr>
 						<td></td>
 						<td><input type="submit" value="Salvar"> <input
 							type="submit" value="Cancelar"
-							onclick="document.getElementById('formCadastro').action = 'salvarProduto?acao=reset'"></td>
-
+							onclick="document.getElementById('formProduto').action = 'salvarProduto?acao=reset'"></td>
 					</tr>
 				</table>
 
@@ -61,8 +60,8 @@
 				<th>Quantidade</th>
 				<th>Valor</th>
 				<th>Editar</th>
-                <th>Salvar</th>
-				
+				<th>Salvar</th>
+
 
 			</tr>
 
@@ -75,7 +74,7 @@
 					<td><c:out value="${produto.nome}"></c:out></td>
 					<td><c:out value="${produto.quantidade}"></c:out></td>
 					<td><c:out value="${produto.valor}"></c:out></td>
-					
+
 
 
 					<td><a href="salvarProduto?acao=delete&produto=${produto.id}"><img
@@ -88,5 +87,21 @@
 			</c:forEach>
 		</table>
 	</div>
+	<script type="text/javascript">
+		function validarCampos() {
+			if (document.getElementById("nome").value == '') {
+				alert('Informe o Nome');
+				return false;
+			} else if (document.getElementById("quantidade").value == '') {
+				alert('Informe o Quantidade');
+				return false;
+			} else if (document.getElementById("valor").value == '') {
+				alert('Informe o Valor R$');
+				return false;
+			}
+			return true;
+		}
+	</script>
+
 </body>
 </html>
