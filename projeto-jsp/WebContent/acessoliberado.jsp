@@ -9,8 +9,9 @@
 <title>Insert title here</title>
 
 </head>
-<body>
 
+<body>
+<a href="index.jsp">Sair</a>
 
 	<h3>Seja bem vindo ao sistema JSP</h3>
 
