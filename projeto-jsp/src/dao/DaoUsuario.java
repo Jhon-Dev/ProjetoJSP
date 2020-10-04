@@ -23,12 +23,18 @@ public class DaoUsuario {
 
 		try {
 
-			String sql = "insert into usuario(login, senha, nome, fone) values (?, ?, ?, ?)";
+			String sql = "insert into usuario(login, senha, nome, fone, cep, rua, bairro, cidade, estado, ibge) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
 			insert.setString(3, usuario.getNome());
 			insert.setString(4, usuario.getFone());
+			insert.setString(5, usuario.getCep());
+			insert.setString(6, usuario.getRua());
+			insert.setString(7, usuario.getBairro());
+			insert.setString(8, usuario.getCidade());
+			insert.setString(9, usuario.getEstado());
+			insert.setString(10, usuario.getIbge());
 			insert.execute();
 			connection.commit();
 
