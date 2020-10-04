@@ -65,6 +65,12 @@ public class DaoUsuario {
 			beanCursoJsp.setSenha(resultSet.getString("senha"));
 			beanCursoJsp.setNome(resultSet.getString("nome"));
 			beanCursoJsp.setFone(resultSet.getString("fone"));
+			beanCursoJsp.setCep(resultSet.getString("cep"));
+			beanCursoJsp.setRua(resultSet.getString("rua"));
+			beanCursoJsp.setBairro(resultSet.getString("bairro"));
+			beanCursoJsp.setCidade(resultSet.getString("cidade"));
+			beanCursoJsp.setEstado(resultSet.getString("estado"));
+			beanCursoJsp.setIbge(resultSet.getString("ibge"));
 
 			listar.add(beanCursoJsp);
 		}
@@ -104,6 +110,12 @@ public class DaoUsuario {
 			beanCursoJsp.setSenha(resultSet.getString("senha"));
 			beanCursoJsp.setNome(resultSet.getString("nome"));
 			beanCursoJsp.setFone(resultSet.getString("fone"));
+			beanCursoJsp.setCep(resultSet.getString("cep"));
+			beanCursoJsp.setRua(resultSet.getString("rua"));
+			beanCursoJsp.setBairro(resultSet.getString("bairro"));
+			beanCursoJsp.setCidade(resultSet.getString("cidade"));
+			beanCursoJsp.setEstado(resultSet.getString("estado"));
+			beanCursoJsp.setIbge(resultSet.getString("ibge"));
 
 			return beanCursoJsp;
 		}
@@ -124,8 +136,6 @@ public class DaoUsuario {
 
 		return false;
 	}
-	
-	
 
 	public boolean validarLoginUpdate(String login, String id) throws SQLException {
 		String sql = "select count(1) as qtd from usuario where login ='" + login + "' and id <> " + id;
@@ -155,7 +165,8 @@ public class DaoUsuario {
 
 	public void atualizar(BeanCursoJsp usuario) {
 
-		String sql = "update usuario set login = ?, senha = ?, nome = ?, fone = ? where id = " + usuario.getId();
+		String sql = "update usuario set login = ?, senha = ?, nome = ?, fone = ?, cep = ?, "
+				+ "rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ? where id = " + usuario.getId();
 
 		try {
 
@@ -165,6 +176,12 @@ public class DaoUsuario {
 			preparedStatement.setString(2, usuario.getSenha());
 			preparedStatement.setString(3, usuario.getNome());
 			preparedStatement.setString(4, usuario.getFone());
+			preparedStatement.setString(5, usuario.getCep());
+			preparedStatement.setString(6, usuario.getRua());
+			preparedStatement.setString(7, usuario.getBairro());
+			preparedStatement.setString(8, usuario.getCidade());
+			preparedStatement.setString(9, usuario.getEstado());
+			preparedStatement.setString(10, usuario.getIbge());
 
 			preparedStatement.executeUpdate();
 			connection.commit();
