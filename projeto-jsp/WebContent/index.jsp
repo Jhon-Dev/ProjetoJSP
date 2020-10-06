@@ -37,9 +37,6 @@
 
 		<input type="submit" class="logbtn" value="Logar">
 
-		<div class="bottom-text">
-			Don't have account? <a href="#">Sign up</a>
-		</div>
 
 	</form>
 
