@@ -38,45 +38,45 @@
 
 
 						<td>Cep:</td>
-						<td><input type="text" id="cep" name="cep"
+						<td><input type="text" id="cep" name="cep"placeholder = "cep"
 							onblur="consultaCep();" value="${user.cep}"></td>
 
 					</tr>
 					<tr>
 						<td>Login:</td>
-						<td><input type="text" id="login" name="login"
+						<td><input type="text" id="login" name="login"placeholder = "login"
 							value="${user.login}"></td>
 
 						<td>Rua:</td>
-						<td><input type="text" id="rua" name="rua"
+						<td><input type="text" id="rua" name="rua"placeholder = "rua"
 							value="${user.rua}"></td>
 					</tr>
 
 					<tr>
 						<td>Senha:</td>
-						<td><input type="password" id="senha" name="senha"
+						<td><input type="password" id="senha" name="senha"placeholder = "senha"
 							value="${user.senha}"></td>
 
 						<td>Bairro:</td>
-						<td><input type="text" id="bairro" name="bairro"
+						<td><input type="text" id="bairro" name="bairro" placeholder = "bairro"
 							value="${user.bairro}"></td>
 					</tr>
 					<tr>
 						<td>Nome:</td>
-						<td><input type="text" id="nome" name="nome"
-							value="${user.nome}"></td>
+						<td><input type="text" id="nome" placeholder = "nome"placeholder = "nome"
+							value="${user.nome}" ></td>
 
 						<td>Cidade:</td>
-						<td><input type="text" id="cidade" name="cidade"
+						<td><input type="text" id="cidade" name="cidade"placeholder = "cidade"
 							value="${user.cidade}"></td>
 					</tr>
 					<tr>
 						<td>Telefone:</td>
-						<td><input type="text" id="fone" name="fone"
+						<td><input type="text" id="fone" name="fone" placeholder = "telefone"
 							value="${user.fone}"></td>
 
 						<td>Estado:</td>
-						<td><input type="text" id="estado" name="estado"
+						<td><input type="text" id="estado" name="estado"placeholder = "estado"
 							value="${user.estado}"></td>
 					</tr>
 

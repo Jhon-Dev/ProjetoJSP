@@ -28,18 +28,18 @@
 					</tr>
 					<tr>
 						<td>Nome:</td>
-						<td><input type="text" id="nome" name="nome"
+						<td><input type="text" id="nome" name="nome"placeholder = "nome"
 							value="${produto.nome}"></td>
 					</tr>
 
 					<tr>
 						<td>Quantidade:</td>
-						<td><input type="text" id="quantidade" name="quantidade"
+						<td><input type="text" id="quantidade" name="quantidade"placeholder = "quantidade"
 							value="${produto.quantidade}"></td>
 					</tr>
 					<tr>
 						<td>Valor R$:</td>
-						<td><input type="text" id="valor" name="valor"
+						<td><input type="text" id="valor" name="valor"placeholder = "valor"
 							value="${produto.valor}"></td>
 					<tr>
 						<td></td>
