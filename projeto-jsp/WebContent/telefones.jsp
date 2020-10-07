@@ -26,11 +26,11 @@
 				<table>
 					<tr>
 						<td>User:</td>
-						<td><input type="text" id="id" name="id" class="field-long"
+						<td><input type="text" id="id" name="id" readonly="readonly" class="field-long"
 							value="${userEscolhido.id}"></td>
 
 
-						<td><input type="text" id="nome" name="nome"
+						<td><input type="text" id="nome" name="nome" readonly="readonly"
 							class="field-long" value="${userEscolhido.nome}"></td>
 					</tr>
 					<tr>
@@ -72,11 +72,13 @@
 					<td style="width: 150px"><c:out value="${fone.numero}">
 						</c:out></td>
 					<td><c:out value="${fone.tipo}"></c:out></td>
-					<td><c:out value="${user.telefone}"></c:out></td>
 
-					<td><a href="salvarUsuario?acao=delete&user=${fone.id}"><img
+
+					<td><a href="salvarTelefones?acao=deleteFone&foneId=${fone.id}"><img
 							src="resources/img/Excluir.png" alt="excluir" title="Excluir"
 							width="20px" height="20px"> </a></td>
+							
+
 
 				</tr>
 

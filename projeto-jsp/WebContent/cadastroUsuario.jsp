@@ -130,8 +130,8 @@
 							width="20px" height="20px"></a></td>
 
 
-					<td><a href="salvarTelefones?user=${user.id}"><img
-							alt="Telefone" title="Telefones" src="resources/img/telefone.png"
+					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img
+							alt="Telefones" title="Telefones" src="resources/img/telefone.png"
 							width="23px" height="23px"></a></td>
 				</tr>
 
