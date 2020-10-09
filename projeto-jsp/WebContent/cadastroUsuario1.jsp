@@ -77,11 +77,6 @@
 						<td><input type="text" id="ibge" name="ibge"
 							value="${user.ibge}" /></td>
 					</tr>
-					<tr>
-						<td>Foto:</td>
-						<td><input type="file" id="foto" name="foto"></td>
-					</tr>
-
 
 
 					<tr>
