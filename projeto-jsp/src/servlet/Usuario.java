@@ -163,7 +163,7 @@ public class Usuario extends HttpServlet {
 				if (!podeInserir) {
 					request.setAttribute("user", usuario);
 				}
-
+				
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				request.setAttribute("msg", "Salvo com sucesso!");
