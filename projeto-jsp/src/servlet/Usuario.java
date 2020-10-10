@@ -1,7 +1,9 @@
 package servlet;
 
+import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -63,12 +65,31 @@ public class Usuario extends HttpServlet {
 				view.forward(request, response);
 
 			} else if (acao.equalsIgnoreCase("download")) {
-			
+
 				BeanCursoJsp usuario = daoUsuario.consultar(user);
 				if (usuario != null) {
-					
-					/*Setar se o arquivo é JPG PEG*/
-					response.setHeader("Content-Disposition", "attachament;arquivo " + usuario.getContentType().split("\\/")[1]);
+
+					/* Setar se o arquivo é JPG PEG */
+					response.setHeader("Content-Disposition",
+							"attachment;filename=arquivo." + usuario.getContentType().split("\\/")[1]);
+
+					/* Converte a base64 da imagem do banco para byte[] */
+					byte[] imageFotosBytes = new Base64().decodeBase64(usuario.getFotoBase64());
+
+					/* Coloca os bytes em um objeto de entrada para processar */
+					InputStream is = new ByteArrayInputStream(imageFotosBytes);
+
+					/* Inicio da resposta para o navegador */
+					int read = 0;
+					byte[] bytes = new byte[1024];
+					OutputStream os = response.getOutputStream();
+
+					while ((read = is.read(bytes)) != -1) {
+						os.write(bytes, 0, read);
+
+					}
+					os.flush();
+					os.close();
 				}
 			}
 
