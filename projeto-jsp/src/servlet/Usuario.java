@@ -2,7 +2,6 @@ package servlet;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.List;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -13,8 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 
-import org.apache.commons.fileupload.FileItem;
-import org.apache.commons.fileupload.disk.DiskFileItemFactory;
 import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.io.output.ByteArrayOutputStream;
 import org.apache.tomcat.util.codec.binary.Base64;
@@ -132,8 +129,11 @@ public class Usuario extends HttpServlet {
 				if (ServletFileUpload.isMultipartContent(request)) {
 					Part imagemFoto = request.getPart("foto");
 					if (imagemFoto != null && imagemFoto.getInputStream().available() > 0) {
-						String foto = Base64.encodeBase64String(converteStremParabyte(imagemFoto.getInputStream()));
-						System.out.println(foto);
+						String fotoBase64 = Base64
+								.encodeBase64String(converteStremParabyte(imagemFoto.getInputStream()));
+						String contentType = imagemFoto.getContentType();
+						usuario.setFotoBase64(fotoBase64);
+						usuario.setContentType(contentType);
 					}
 				}
 
@@ -197,17 +197,17 @@ public class Usuario extends HttpServlet {
 
 	}
 
-	/*Converte a entrada de fluxo de dados da imagem para byte[]*/
-	private byte[] converteStremParabyte(InputStream imagem) throws Exception{
-		
-	 ByteArrayOutputStream baos = new ByteArrayOutputStream();
-	 int reads = imagem.read();
-	 while (reads != -1){
-		 baos.write(reads);
-		 reads = imagem.read();
-	 }
-	 
-	 return baos.toByteArray();
+	/* Converte a entrada de fluxo de dados da imagem para byte[] */
+	private byte[] converteStremParabyte(InputStream imagem) throws Exception {
+
+		ByteArrayOutputStream baos = new ByteArrayOutputStream();
+		int reads = imagem.read();
+		while (reads != -1) {
+			baos.write(reads);
+			reads = imagem.read();
+		}
+
+		return baos.toByteArray();
 	}
 
 }
