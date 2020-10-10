@@ -73,6 +73,8 @@ public class DaoUsuario {
 			beanCursoJsp.setCidade(resultSet.getString("cidade"));
 			beanCursoJsp.setEstado(resultSet.getString("estado"));
 			beanCursoJsp.setIbge(resultSet.getString("ibge"));
+			beanCursoJsp.setContentType(resultSet.getString("contenttype"));
+			beanCursoJsp.setFotoBase64(resultSet.getString("fotobase64"));
 
 			listar.add(beanCursoJsp);
 		}
@@ -118,6 +120,8 @@ public class DaoUsuario {
 			beanCursoJsp.setCidade(resultSet.getString("cidade"));
 			beanCursoJsp.setEstado(resultSet.getString("estado"));
 			beanCursoJsp.setIbge(resultSet.getString("ibge"));
+			beanCursoJsp.setFotoBase64(resultSet.getString("fotobase64"));
+			beanCursoJsp.setContentType(resultSet.getString("contenttype"));
 
 			return beanCursoJsp;
 		}

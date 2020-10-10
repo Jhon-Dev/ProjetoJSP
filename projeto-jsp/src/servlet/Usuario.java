@@ -62,6 +62,14 @@ public class Usuario extends HttpServlet {
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 
+			} else if (acao.equalsIgnoreCase("download")) {
+			
+				BeanCursoJsp usuario = daoUsuario.consultar(user);
+				if (usuario != null) {
+					
+					/*Setar se o arquivo é JPG PEG*/
+					response.setHeader("Content-Disposition", "attachament;arquivo " + usuario.getContentType().split("\\/")[1]);
+				}
 			}
 
 		} catch (Exception e) {

@@ -102,8 +102,8 @@
 			<tr>
 				<th>Id</th>
 				<th>Login</th>
+				<th>Foto</th>
 				<th>Nome</th>
-				<th>Telefone</th>
 				<th>Delete</th>
 				<th>Editar</th>
 				<th>Telefone</th>
@@ -115,7 +115,11 @@
 						</c:out></td>
 					<td style="width: 150px"><c:out value="${user.login}">
 						</c:out></td>
-					<td><c:out value="${user.nome}"></c:out></td>
+
+					<td><a href="salvarUsuario?acao=download&user=${user.id}"><img src='<c:out value="${user.tempFotoUser}" /> '
+						alt="Imagem" title="Imagem" width="32px" height="32px" /> </a></td>
+
+
 					<td><c:out value="${user.fone}"></c:out></td>
 
 					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img
