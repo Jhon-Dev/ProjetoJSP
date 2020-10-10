@@ -82,6 +82,11 @@
 						<td><input type="file" id="foto" name="foto"></td>
 					</tr>
 
+					<tr>
+						<td>Curriculo:</td>
+						<td><input type="file" id="curriculo" name="curriculo"></td>
+					</tr>
+
 
 
 					<tr>
@@ -103,6 +108,7 @@
 				<th>Id</th>
 				<th>Login</th>
 				<th>Foto</th>
+				<th>Curriculo</th>
 				<th>Nome</th>
 				<th>Delete</th>
 				<th>Editar</th>
@@ -110,30 +116,19 @@
 
 			</tr>
 			<c:forEach items="${usuarios}" var="user">
-				<tr>
-					<td style="width: 150px"><c:out value="${user.id}">
-						</c:out></td>
-					<td style="width: 150px"><c:out value="${user.login}">
-						</c:out></td>
 
-					<td><a href="salvarUsuario?acao=download&user=${user.id}"><img src='<c:out value="${user.tempFotoUser}" /> '
-						alt="Imagem" title="Imagem" width="32px" height="32px" /> </a></td>
+					<td><a href="salvarUsuario?acao=download&tipo=imagem&user=${user.id}"><img src='<c:out value="${user.tempFotoUser}"/>' alt="Imagem User" title="Imagem User" width="32px" height="32px" /> </a></td>
+					
+					<td><a href="salvarUsuario?acao=download&tipo=curriculo&user=${user.id}">Curriculo</a></td>
 
 
-					<td><c:out value="${user.fone}"></c:out></td>
+					<td><c:out value="${user.nome}"></c:out></td>
 
-					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img
-							src="resources/img/Excluir.png" alt="excluir" title="Excluir"
-							width="20px" height="20px"> </a></td>
+					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img src="resources/img/Excluir.png" alt="excluir" title="Excluir" width="20px" height="20px"> </a></td>
 
-					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img
-							alt="Editar" title="Editar" src="resources/img/Editar.png"
-							width="20px" height="20px"></a></td>
+					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img alt="Editar" title="Editar" src="resources/img/Editar.png"width="20px" height="20px"></a></td>
 
-
-					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img
-							alt="Telefones" title="Telefones"
-							src="resources/img/telefone.png" width="23px" height="23px"></a></td>
+					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img alt="Telefones" title="Telefones" src="resources/img/telefone.png" width="23px" height="23px"></a></td>
 				</tr>
 
 			</c:forEach>

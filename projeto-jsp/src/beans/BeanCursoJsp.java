@@ -26,19 +26,21 @@ public class BeanCursoJsp {
 
 	private String fotoBase64;
 
+	private String curriculoBase64;
+
 	private String contentType;
 
+	private String contentTypeCurriculo;
+
 	private String tempFotoUser;
-	
-	
 
 	public String getTempFotoUser() {
-		
+
 		tempFotoUser = "data:" + contentType + ";base64," + fotoBase64;
 
 		return tempFotoUser;
 	}
-	
+
 
 	public Long getId() {
 		return id;
@@ -143,6 +145,23 @@ public class BeanCursoJsp {
 	public void setContentType(String contentType) {
 		this.contentType = contentType;
 	}
+	
+	public void setCurriculoBase64(String curriculoBase64) {
+		this.curriculoBase64 = curriculoBase64;
+	}
+
+	public String getCurriculoBase64() {
+		return curriculoBase64;
+	}
+
+	public void setContentTypeCurriculo(String contentTypeCurriculo) {
+		this.contentTypeCurriculo = contentTypeCurriculo;
+	}
+
+	public String getContentTypeCurriculo() {
+		return contentTypeCurriculo;
+	}
+
 
 	@Override
 	public String toString() {
