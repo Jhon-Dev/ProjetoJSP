@@ -36,7 +36,8 @@ public class LoginServlet extends HttpServlet {
 			String login = request.getParameter("login");
 			String senha = request.getParameter("senha");
 
-			if (login != null && login.isEmpty() && senha != null && !senha.isEmpty()) {
+			if (login != null && !login.isEmpty()
+					&& senha != null && !senha.isEmpty()) {
 
 				if (daoLogin.validarLogin(login, senha)) { // acesso ok
 
