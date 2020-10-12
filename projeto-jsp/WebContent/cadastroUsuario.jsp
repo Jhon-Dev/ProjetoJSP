@@ -128,11 +128,21 @@
 					<td style="width: 150px"><c:out value="${user.login}">
 						</c:out></td>
 
+                    <c:if test="${user.fotoBase64.isEmpty() == false}">
 					<td><a href="salvarUsuario?acao=download&tipo=imagem&user=${user.id}"><img src='<c:out value="${user.tempFotoUser}" /> ' alt="Imagem" title="Imagem" width="32px" height="32px" /> </a></td>
-					<td><a href="salvarUsuario?acao=download&tipo=curriculo&user=${user.id}">Curriculo</a></td>
-
+					</c:if>
+                    <c:if test="${user.fotoBase64.isEmpty() == true}">
+                    <td><img alt="Imagem User" src="resources/img/userpadrao.png"  width="35px" height="35px" onclick="alert('Não possui Curriculo')" ></td>
+					</c:if>
+					
+					 <c:if test="${user.curriculoBase64.isEmpty() == false}">
+					<td><a href="salvarUsuario?acao=download&tipo=curriculo&user=${user.id}"> <img alt="Curriculo" src="resources/img/pdf.png" width="35px" height="35px"> </a></td>
+					 </c:if>
+					 <c:if test="${user.curriculoBase64.isEmpty() == true}">
+                    <td><img alt="Curriculo" src="resources/img/pdf.png" width="35px" height="35px" onclick="alert('Não possui Curriculo')">  </td>
+					</c:if>
+					 
 					<td><c:out value="${user.nome}"></c:out></td>
-
 					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img src="resources/img/Excluir.png" alt="excluir" title="Excluir" width="20px" height="20px"> </a></td>
 					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img alt="Editar" title="Editar" src="resources/img/Editar.png" width="20px" height="20px"></a></td>
 					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img alt="Telefones" title="Telefones" src="resources/img/telefone.png" width="23px" height="23px"></a></td>
