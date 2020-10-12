@@ -1,7 +1,6 @@
 package servlet;
 
 import java.io.IOException;
-import java.sql.SQLException;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -33,30 +32,26 @@ public class ServletsTelefones extends HttpServlet {
 		try {
 
 			String acao = request.getParameter("acao");
+			String user = request.getParameter("user");
+			BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
 
-			if (acao.endsWith("addFone")) {
+			if (acao.equalsIgnoreCase("addFone")) {
 
-				String user = request.getParameter("user");
-
-				BeanCursoJsp usuario = daoUsuario.consultar(user);
-
-				request.getSession().setAttribute("userEscolhido", usuario);
-				request.setAttribute("userEscolhido", usuario);
+				request.getSession().setAttribute("userEscolhido", beanCursoJsp);
+				request.setAttribute("userEscolhido", beanCursoJsp);
 
 				RequestDispatcher view = request.getRequestDispatcher("/telefones.jsp");
-				request.setAttribute("telefones", daoTelefones.listar(usuario.getId()));
-				request.setAttribute("msg", "Salvo com sucesso!");
+				request.setAttribute("telefones", daoTelefones.listar(beanCursoJsp.getId()));
 				view.forward(request, response);
 
-			} else if (acao.endsWith("deleteFone")) {
+			} else if (acao.equalsIgnoreCase("deleteFone")) {
 
 				String FoneId = request.getParameter("foneId");
 				daoTelefones.delete(FoneId);
 
-				BeanCursoJsp beanCursoJsp = (BeanCursoJsp) request.getSession().getAttribute("userEscolhido");
-
 				RequestDispatcher view = request.getRequestDispatcher("/telefones.jsp");
-				request.setAttribute("telefones", daoTelefones.listar(beanCursoJsp.getId()));
+				request.setAttribute("userEscolhido", beanCursoJsp);
+				request.setAttribute("telefones", daoTelefones.listar(Long.parseLong(user)));
 				request.setAttribute("msg", "Removido com sucesso!");
 				view.forward(request, response);
 
@@ -75,25 +70,42 @@ public class ServletsTelefones extends HttpServlet {
 			BeanCursoJsp beanCursoJsp = (BeanCursoJsp) request.getSession().getAttribute("userEscolhido");
 
 			String numero = request.getParameter("numero");
-
 			String tipo = request.getParameter("tipo");
 
-			Telefones telefones = new Telefones();
-			telefones.setNumero(numero);
-			telefones.setNumero(numero);
-			telefones.setTipo(tipo);
-			telefones.setUsuario(beanCursoJsp.getId());
+			String acao = request.getParameter("acao");
 
-			daoTelefones.salvar(telefones);
+			if (acao == null || (acao != null && !acao.equalsIgnoreCase("voltar"))) {
 
-			request.getSession().setAttribute("userEscolhido", beanCursoJsp);
-			request.setAttribute("userEscolhido", beanCursoJsp);
+				if (numero == null || (numero != null && numero.isEmpty())) {
 
-			RequestDispatcher view = request.getRequestDispatcher("/telefones.jsp");
-			request.setAttribute("telefones", daoTelefones.listar(beanCursoJsp.getId()));
-			request.setAttribute("msg", "Salvo com sucesso!");
-			view.forward(request, response);
+					RequestDispatcher view = request.getRequestDispatcher("/telefones.jsp");
+					request.setAttribute("telefones", daoTelefones.listar(beanCursoJsp.getId()));
+					request.setAttribute("msg", "Informe o numero!");
+					view.forward(request, response);
+				} else {
 
+					Telefones telefones = new Telefones();
+					telefones.setNumero(numero);
+					telefones.setNumero(numero);
+					telefones.setTipo(tipo);
+					telefones.setUsuario(beanCursoJsp.getId());
+
+					daoTelefones.salvar(telefones);
+
+					request.getSession().setAttribute("userEscolhido", beanCursoJsp);
+					request.setAttribute("userEscolhido", beanCursoJsp);
+
+					RequestDispatcher view = request.getRequestDispatcher("/telefones.jsp");
+					request.setAttribute("telefones", daoTelefones.listar(beanCursoJsp.getId()));
+					request.setAttribute("msg", "Salvo com sucesso!");
+					view.forward(request, response);
+				}
+			} else {
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
+
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

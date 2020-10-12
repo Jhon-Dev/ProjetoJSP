@@ -36,20 +36,24 @@
 					<tr>
 						<td>Número:</td>
 						<td><input type="text" id="numero" name="numero"></td>
-						<td><select id="tipo" name="tipo">
+						
+						<td>
+						<select id="tipo" name="tipo" style=" width: 173px">
 								<option>Casa</option>
 								<option>Contato</option>
 								<option>Celular</option>
 								<option>Casa</option>
-						</select></td>
+						</select>
+						</td>
 					</tr>
-
-
-
-
 					<tr>
-						<td/>
-						<td><input type="submit" value="Salvar">
+						<td></td>
+						<td>
+							 <input type="submit" value="Salvar" style="width: 185px;"/>
+						</td>
+						<td>
+							 <input type="submit" value="Voltar" onclick="document.getElementById('formUser').action = 'salvarTelefones?acao=voltar'" style="width: 173px;"/>
+						</td>
 					</tr>
 				</table>
 
@@ -71,10 +75,10 @@
 						</c:out></td>
 					<td style="width: 150px"><c:out value="${fone.numero}">
 						</c:out></td>
-					<td><c:out value="${fone.tipo}"></c:out></td>
+					<td ><c:out value="${fone.tipo}"></c:out></td>
 
 
-					<td><a href="salvarTelefones?acao=deleteFone&foneId=${fone.id}"><img
+					<td><a href="salvarTelefones?user=${fone.usuario}&acao=deleteFone&foneId=${fone.id}"><img
 							src="resources/img/Excluir.png" alt="excluir" title="Excluir"
 							width="20px" height="20px"> </a></td>
 							
@@ -85,20 +89,5 @@
 			</c:forEach>
 		</table>
 	</div>
-	<script type="text/javascript">
-		function validarCampos() {
-			if (document.getElementById("numero").value == '') {
-				alert('Informe o Número');
-				return false;
-			}
-
-			else if (document.getElementById("tipo").value == '') {
-				alert('Informe o Tipo');
-				return false;
-			}
-
-			return true;
-		}
-	</script>
 </body>
 </html>

@@ -37,44 +37,42 @@
 						<td><input type="text" readonly="readonly" id="id" name="id"
 							value="${user.id}" /></td>
 						<td>CEP:</td>
-						<td><input type="text" id="cep" name="cep" value=""
+						<td><input type="text" id="cep" name="cep" value="" maxlength="9"
 							onblur="consultarCep()" value="${user.cep}" /></td>
 					</tr>
 					<tr>
 						<td>Login:</td>
-						<td><input type="text" id="login" name="login"
+						<td><input type="text" id="login" name="login" maxlength="10"
 							value="${user.login}" /></td>
 						<td>Rua:</td>
-						<td><input type="text" id="rua" name="rua"
+						<td><input type="text" id="rua" name="rua" maxlength="50"
 							value="${user.rua}" /></td>
 					</tr>
 					<tr>
 						<td>Senha:</td>
-						<td><input type="password" id="senha" name="senha"
+						<td><input type="password" id="senha" name="senha" maxlength="10"
 							value="${user.senha}" /></td>
 						<td>Bairro:</td>
-						<td><input type="text" id="bairro" name="bairro"
+						<td><input type="text" id="bairro" name="bairro" maxlength="50"
 							value="${user.bairro}" /></td>
 					</tr>
 					<tr>
 						<td>Nome:</td>
-						<td><input type="text" id="nome" name="nome"
+						<td><input type="text" id="nome" name="nome" maxlength="50"
 							value="${user.nome}" /></td>
 						<td>Cidade:</td>
-						<td><input type="text" id="cidade" name="cidade"
+						<td><input type="text" id="cidade" name="cidade" maxlength="50"
 							value="${user.cidade}" /></td>
 					</tr>
 					<tr>
-						<td>Telefone:</td>
-						<td><input type="text" id="fone" name="fone"
-							value="${user.fone}" /></td>
+
 						<td>Estado:</td>
-						<td><input type="text" id="estado" name="estado"
+						<td><input type="text" id="estado" name="estado" maxlength="50"
 							value="${user.estado}" /></td>
 					</tr>
 					<tr>
 						<td>IBGE:</td>
-						<td><input type="text" id="ibge" name="ibge"
+						<td><input type="text" id="ibge" name="ibge" maxlength="30"
 							value="${user.ibge}" /></td>
 					</tr>
 					<tr>
