@@ -28,24 +28,21 @@
 					</tr>
 					<tr>
 						<td>Nome:</td>
-						<td><input type="text" id="nome" name="nome"placeholder = "nome"
-							value="${produto.nome}"></td>
+						<td><input type="text" id="nome" name="nome"placeholder = "nome"  maxlength="100" value="${produto.nome}"></td>
 					</tr>
 
 					<tr>
 						<td>Quantidade:</td>
-						<td><input type="text" id="quantidade" name="quantidade"placeholder = "quantidade"
-							value="${produto.quantidade}"></td>
+						<td><input type="number" id="quantidade" name="quantidade"placeholder = "quantidade" maxlength="12" value="${produto.quantidade}"></td>
 					</tr>
 					<tr>
 						<td>Valor R$:</td>
-						<td><input type="text" id="valor" name="valor"placeholder = "valor"
-							value="${produto.valor}"></td>
+						<td><input type="text" id="valor" name="valor"placeholder = "valor" maxlength="12" value="${produto.valor}"></td>
 					<tr>
 						<td></td>
-						<td><input type="submit" value="Salvar"> <input
-							type="submit" value="Cancelar"
-							onclick="document.getElementById('formProduto').action = 'salvarProduto?acao=reset'"></td>
+						<td>
+						<input type="submit" value="Salvar" style="width: 90px"> 
+						<input style="width: 90px" type="submit" value="Cancelar" onclick="document.getElementById('formProduto').action = 'salvarProduto?acao=reset'"></td>
 					</tr>
 				</table>
 

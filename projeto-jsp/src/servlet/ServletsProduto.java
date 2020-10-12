@@ -1,4 +1,4 @@
- package servlet;
+package servlet;
 
 import java.io.IOException;
 
@@ -107,9 +107,11 @@ public class ServletsProduto extends HttpServlet {
 					produto.setQuantidade(Double.parseDouble(quantidade));
 				}
 
-				if (valor != null && !valor.isEmpty())
-					produto.setValor(Double.parseDouble(valor));
-
+				if (valor != null && !valor.isEmpty()) {
+					String valorParse = valor.replaceAll("\\.", ""); // 10.500,20
+					valorParse = valorParse.replaceAll("\\,", "."); // 10500.20
+					produto.setValor(Double.parseDouble(valorParse));
+				}
 				if (msg != null) {
 					request.setAttribute("msg", msg);
 				} else if (id == null || id.isEmpty() && daoProduto.validarNome(nome) && podeInserir) {
