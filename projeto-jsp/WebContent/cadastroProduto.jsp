@@ -6,6 +6,10 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Cadastro de Produto</title>
+
+ <script src="resources/javascript/jquery.min.js" type="text/javascript"></script>
+  <script src="resources/javascript/jquery.maskMoney.min.js" type="text/javascript"></script>
+ 
 <link rel="stylesheet" href="resources/css/cadastro.css">
 </head>
 <body>
@@ -23,7 +27,7 @@
 				<table>
 					<tr>
 						<td>Código:</td>
-						<td><input type="text" readonly="readonly" id="id" name="id"
+						<td><input type="text" readonly="readonly" id="id" name="id" placeholder = "ID"
 							value="${produto.id}" class="field-long"></td>
 					</tr>
 					<tr>
@@ -37,7 +41,8 @@
 					</tr>
 					<tr>
 						<td>Valor R$:</td>
-						<td><input type="text" id="valor" name="valor"placeholder = "valor" maxlength="12" value="${produto.valor}"></td>
+						<td><input type="text" id="valor" name="valor"placeholder = "valor" maxlength="12"  data-decimal="," data-precision="2"
+						value="${produto.valor}"></td>
 					<tr>
 						<td></td>
 						<td>
@@ -58,8 +63,8 @@
 				<th>Nome</th>
 				<th>Quantidade</th>
 				<th>Valor</th>
+				<th>Delete</th>
 				<th>Editar</th>
-				<th>Salvar</th>
 
 
 			</tr>
@@ -101,6 +106,12 @@
 			return true;
 		}
 	</script>
+<script type="text/javascript">
 
+$(function() {
+    $('#valor').maskMoney();
+  })
+  
+</script>
 </body>
 </html>

@@ -43,14 +43,14 @@ public class Usuario extends HttpServlet {
 
 			String user = request.getParameter("user");
 
-			if (acao.equalsIgnoreCase("delete")) {
+			if (acao != null && acao.equalsIgnoreCase("delete") && user != null) {
 				daoUsuario.delete(user);
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 
-			} else if (acao.equalsIgnoreCase("editar")) {
+			} else if (acao != null && acao.equalsIgnoreCase("editar")) {
 
 				BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
 
@@ -58,13 +58,13 @@ public class Usuario extends HttpServlet {
 				request.setAttribute("user", beanCursoJsp);
 				view.forward(request, response);
 
-			} else if (acao.equalsIgnoreCase("listartodos")) {
+			} else if (acao != null && acao.equalsIgnoreCase("listartodos")) {
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
 				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
 
-			} else if (acao.equalsIgnoreCase("download")) {
+			} else if (acao != null && acao.equalsIgnoreCase("download")) {
 				BeanCursoJsp usuario = daoUsuario.consultar(user);
 				if (usuario != null) {
 					String contentType = "";
@@ -99,6 +99,12 @@ public class Usuario extends HttpServlet {
 					os.close();
 
 				}
+			} else {
+
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
+				view.forward(request, response);
+
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -193,7 +199,7 @@ public class Usuario extends HttpServlet {
 						usuario.setContentTypeCurriculo(curriculoPdf.getContentType());
 
 					} else {
-						
+
 						usuario.setCurriculoBase64(request.getParameter("fotoTempPDF"));
 						usuario.setContentTypeCurriculo(request.getParameter("contetyTypeTempPDF"));
 					}
@@ -215,10 +221,6 @@ public class Usuario extends HttpServlet {
 
 				} else if (nome == null || nome.isEmpty()) {
 					msg = "Nome deve ser informado";
-					podeInserir = false;
-
-				} else if (fone == null || fone.isEmpty()) {
-					msg = "Telefone deve ser informado";
 					podeInserir = false;
 
 				} else if (id == null || id.isEmpty() && !daoUsuario.validarLogin(login)) {// QUANDO DOR USUÁRIO NOVO
