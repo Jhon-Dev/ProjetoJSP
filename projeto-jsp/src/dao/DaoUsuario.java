@@ -23,7 +23,7 @@ public class DaoUsuario {
 
 		try {
 
-			String sql = "insert into usuario(login, senha, nome, fone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contenttype,curriculoBase64, contentTypeCurriculo) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into usuario(login, senha, nome, fone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contenttype,curriculoBase64, contentTypeCurriculo, fotoBase64Miniatura) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
@@ -39,6 +39,7 @@ public class DaoUsuario {
 			insert.setString(12, usuario.getContentType());
 			insert.setString(13, usuario.getCurriculoBase64());
 			insert.setString(14, usuario.getContentTypeCurriculo());
+			insert.setString(15, usuario.getFotoBase64Miniatura());
 			insert.execute();
 			connection.commit();
 
@@ -179,7 +180,7 @@ public class DaoUsuario {
 
 		String sql = "update usuario set login = ?, senha = ?, nome = ?, fone = ?, cep = ?, "
 				+ "rua = ?, bairro = ?, cidade = ?, estado = ?, ibge = ?, "
-				+ "fotobase64 = ?, contenttype = ?, curriculoBase64 = ?, contentTypeCurriculo = ?  where id = " + usuario.getId();
+				+ "fotobase64 = ?, contenttype = ?, curriculoBase64 = ?, contentTypeCurriculo = ?, fotoBase64Miniatura = ?  where id = " + usuario.getId();
 
 		
 		try {
@@ -200,6 +201,7 @@ public class DaoUsuario {
 			preparedStatement.setString(12, usuario.getContentType());
 			preparedStatement.setString(13, usuario.getCurriculoBase64());
 			preparedStatement.setString(14, usuario.getContentTypeCurriculo());
+			preparedStatement.setString(15, usuario.getFotoBase64Miniatura());
 
 
 			preparedStatement.executeUpdate();
