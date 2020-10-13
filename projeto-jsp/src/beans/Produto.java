@@ -40,4 +40,8 @@ public class Produto {
 		this.valor = valor;
 	}
 
+	public String getValorEmTexto() {
+		
+		return Double.toString(valor).replace('.', ',');
+	}
 }

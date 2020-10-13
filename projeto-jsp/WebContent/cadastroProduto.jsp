@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
+	
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -41,8 +44,8 @@
 					</tr>
 					<tr>
 						<td>Valor R$:</td>
-						<td><input type="text" id="valor" name="valor"placeholder = "valor" maxlength="12"  data-decimal="," data-precision="2"
-						value="${produto.valor}"></td>
+						<td><input type="text" id="valor" name="valor"placeholder = "valor" maxlength="12" data-thousands="." data-decimal="," data-precision="2"
+						value="${produto.valorEmTexto}"></td>	
 					<tr>
 						<td></td>
 						<td>
@@ -73,13 +76,10 @@
 				<tr>
 
 					<td style="width: 150px"><c:out value="${produto.id}"></c:out></td>
-
-
-					<td><c:out value="${produto.nome}"></c:out></td>
+					<td style="width: 150px"><c:out value="${produto.nome}"></c:out></td>
+										
 					<td><c:out value="${produto.quantidade}"></c:out></td>
-					<td><c:out value="${produto.valor}"></c:out></td>
-
-
+					<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${produto.valor}"/></td>
 
 					<td><a href="salvarProduto?acao=delete&produto=${produto.id}"><img
 							src="resources/img/Excluir.png" alt="Exluir" title="Exluir"
