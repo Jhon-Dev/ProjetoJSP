@@ -176,14 +176,12 @@ public class Usuario extends HttpServlet {
 				if (ServletFileUpload.isMultipartContent(request)) {
 					
 					Part imagemFoto = request.getPart("foto");
-					
-					byte[] bytesImagem = converteStremParabyte(imagemFoto.getInputStream());
-					
+										
 
 					if (imagemFoto != null && imagemFoto.getInputStream().available() > 0) {
 
 						String fotoBase64 = new Base64()
-								.encodeBase64String(bytesImagem);
+								.encodeBase64String(converteStremParabyte(imagemFoto.getInputStream()));
 
 						usuario.setFotoBase64(fotoBase64);
 						usuario.setContentType(imagemFoto.getContentType());
@@ -191,7 +189,8 @@ public class Usuario extends HttpServlet {
 						/*Inicio miniatura imagem*/
 						
 						/*Transforma em  um BufferedImage*/
-						BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(bytesImagem));
+						byte[] imageByteDecode = new Base64().decodeBase64(fotoBase64);
+						BufferedImage bufferedImage = ImageIO.read(new ByteArrayInputStream(imageByteDecode));
 						
 						/*Pega o tipo da I,age,*/
 						int type = bufferedImage.getType() == 0 ? BufferedImage.TYPE_INT_ARGB: bufferedImage.getType();
@@ -199,7 +198,8 @@ public class Usuario extends HttpServlet {
 						/*Cria imagem em miniatura*/
 						BufferedImage resizedImage = new BufferedImage(100, 100, type);
 						Graphics2D g = resizedImage.createGraphics();
-						g.drawImage(resizedImage, 0, 0, 100, 100, null);
+						g.drawImage(bufferedImage, 0, 0, 100, 100, null);
+						g.dispose();
 						
 						/*Escrever imagem novamente*/
 						ByteArrayOutputStream baos = new ByteArrayOutputStream();
