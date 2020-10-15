@@ -21,7 +21,7 @@ public class BeanCursoJsp {
 	private String cidade;
 
 	private String estado;
-
+	
 	private String ibge;
 
 	private String fotoBase64;
@@ -35,6 +35,14 @@ public class BeanCursoJsp {
 	private String contentTypeCurriculo;
 
 	private String tempFotoUser;
+	
+	private boolean atualizarImagem = true;
+	
+	private boolean atualizarPdf = true;
+	
+	
+	
+
 
 	public String getTempFotoUser() {
 
@@ -171,6 +179,24 @@ public class BeanCursoJsp {
 		return contentTypeCurriculo;
 	}
 
+
+	public boolean isAtualizarImagem() {
+		return atualizarImagem;
+	}
+
+	public void setAtualizarImagem(boolean atualizarImagem) {
+		this.atualizarImagem = atualizarImagem;
+	}
+
+	public boolean isAtualizarPdf() {
+		return atualizarPdf;
+	}
+
+	public void setAtualizarPdf(boolean atualizarPdf) {
+		this.atualizarPdf = atualizarPdf;
+	}
+	
+	
 	@Override
 	public String toString() {
 		return "BeanCursoJsp [fone=" + fone + "]";

@@ -213,8 +213,7 @@ public class Usuario extends HttpServlet {
 
 					} else {
 
-						usuario.setFotoBase64(request.getParameter("fotoTemp"));
-						usuario.setContentType(request.getParameter("contetyTypeTemp"));
+						usuario.setAtualizarImagem(false);
 					}
 
 					/* Processa pdf */
@@ -230,8 +229,7 @@ public class Usuario extends HttpServlet {
 
 					} else {
 
-						usuario.setCurriculoBase64(request.getParameter("fotoTempPDF"));
-						usuario.setContentTypeCurriculo(request.getParameter("contetyTypeTempPDF"));
+						usuario.setAtualizarPdf(false);
 					}
 				}
 

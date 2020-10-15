@@ -122,17 +122,17 @@
 					<td style="width: 150px"><c:out value="${user.login}">
 						</c:out></td>
 
-                    <c:if test="${user.fotoBase64Miniatura != null}">
+                    <c:if test="${user.fotoBase64Miniatura.isEmpty() == false}">
 					<td><a href="salvarUsuario?acao=download&tipo=imagem&user=${user.id}"><img src='<c:out value="${user.fotoBase64Miniatura}" /> ' alt="Imagem" title="Imagem" width="32px" height="32px" /> </a></td>
 					</c:if>
-                    <c:if test="${user.fotoBase64Miniatura  == null}">
+                    <c:if test="${user.fotoBase64Miniatura == null}">
                     <td><img alt="Imagem User" src="resources/img/userpadrao.png"  width="35px" height="35px" onclick="alert('Não possui Imagem')" ></td>
 					</c:if>
 					
 					 <c:if test="${user.curriculoBase64.isEmpty() == false}">
 					<td><a href="salvarUsuario?acao=download&tipo=curriculo&user=${user.id}"> <img alt="Curriculo" src="resources/img/pdf.png" width="35px" height="35px"> </a></td>
 					 </c:if>
-					 <c:if test="${user.curriculoBase64.isEmpty() == true}">
+					 <c:if test="${user.curriculoBase64 == null}">
                     <td><img alt="Curriculo" src="resources/img/pdf.png" width="35px" height="35px" onclick="alert('Não possui Curriculo')">  </td>
 					</c:if>
 					 
