@@ -23,7 +23,7 @@
 
 
 	<form action="LoginServlet" method="post" class="login-form">
-		<h1>Login</h1>
+		<h1>LOGIN</h1>
 
 		<div class="txtb">
 			<input type="text" id="login" name="login"> <span
@@ -36,8 +36,6 @@
 		</div>
 
 		<input type="submit" class="logbtn" value="Logar">
-
-
 	</form>
 
 	<script type="text/javascript">

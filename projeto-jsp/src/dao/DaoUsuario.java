@@ -57,7 +57,7 @@ public class DaoUsuario {
 	public List<BeanCursoJsp> listar() throws Exception {
 		List<BeanCursoJsp> listar = new ArrayList<BeanCursoJsp>();
 
-		String sql = "select * from usuario";
+		String sql = "select * from usuario where login <>'admin'";
 
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();
@@ -90,7 +90,7 @@ public class DaoUsuario {
 
 	public void delete(String id) {
 		try {
-			String sql = "delete from usuario where id = '" + id + "'";
+			String sql = "delete from usuario where id = '" + id + "' and login <> 'admin'";
 			PreparedStatement preparedStatement = connection.prepareStatement(sql);
 			preparedStatement.execute();
 
@@ -108,7 +108,7 @@ public class DaoUsuario {
 	}
 
 	public BeanCursoJsp consultar(String id) throws SQLException {
-		String sql = "select * from usuario where id ='" + id + "'";
+		String sql = "select * from usuario where id ='" + id + "' and login <> 'admin'";
 
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();

@@ -18,8 +18,8 @@
 
 </head>
 <body>
-	<a href="acessoliberado.jsp">Inicío</a>
-	<a href="index.jsp">Sair</a>
+<a href="acessoliberado.jsp"><img alt="Inicio" title="Inicio" src="resources/img/inicio.png" width="25" height="25"> </a>
+<a href="index.jsp"><img alt="Sair" title="Sair" src="resources/img/Excluir.png" width="25" height="25"></a>
 
 	<center>
 		<h1>Cadastro de usuário</h1>
@@ -78,8 +78,6 @@
 					<tr>
 						<td>Foto:</td>
 						<td><input type="file"  name="foto">
-						<input type ="text" style="display: none;" name="fotoTemp" readonly="readonly" value="${user.fotoBase64}">
-						<input type ="text" style="display: none;" name="contetyTypeTemp" readonly="readonly" value="${user.contentType}"> </td>
 						
 						
 					</tr>
@@ -87,8 +85,6 @@
 					<tr>
 						<td>Curriculo:</td>
 						<td><input type="file" id="curriculo" name="curriculo">
-						<input type ="text" style="display: none;" name="fotoTempPDF" readonly="readonly" value="${user.curriculoBase64}">
-						<input type ="text" style="display: none;" name="contetyTypeTempPDF" readonly="readonly" value="${user.contentTypeCurriculo}"> </td>
 					</tr>
 
 
@@ -107,7 +103,7 @@
 
 	<div class="container">
 		<table class="responsive-table">
-			<caption>Usuários cadastrados</caption>
+			<caption>Lista de Usuários</caption>
 			<tr>
 				<th>Id</th>
 				<th>Login</th>
@@ -126,10 +122,10 @@
 					<td style="width: 150px"><c:out value="${user.login}">
 						</c:out></td>
 
-                    <c:if test="${user.fotoBase64Miniatura.isEmpty() == false}">
+                    <c:if test="${user.fotoBase64Miniatura != null}">
 					<td><a href="salvarUsuario?acao=download&tipo=imagem&user=${user.id}"><img src='<c:out value="${user.fotoBase64Miniatura}" /> ' alt="Imagem" title="Imagem" width="32px" height="32px" /> </a></td>
 					</c:if>
-                    <c:if test="${user.fotoBase64Miniatura.isEmpty() == true}">
+                    <c:if test="${user.fotoBase64Miniatura  == null}">
                     <td><img alt="Imagem User" src="resources/img/userpadrao.png"  width="35px" height="35px" onclick="alert('Não possui Imagem')" ></td>
 					</c:if>
 					

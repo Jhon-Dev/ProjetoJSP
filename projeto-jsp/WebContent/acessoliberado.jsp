@@ -11,16 +11,32 @@
 </head>
 
 <body>
-	<center>
-		<a href="index.jsp">Sair</a>
-		
+<a href="index.jsp"><img alt="Sair" title="Sair" src="resources/img/Excluir.png" width="25" height="25"></a>
+
+	<center style="padding-top: 5%">
+
+
 		<h3>BEM VINDO AO SISTEMA JSP</h3>
 
-		<a href="salvarUsuario?acao=listartodos"><img alt="Cadastro"
+		<table>
+
+			<tr>
+				<td><a href="salvarUsuario?acao=listartodos"><img alt="Cadastro"
 			title="Cadastro" src="resources/img/cadastro.png" width="100"
-			height="100"></a> <a href="salvarProduto?acao=listartodos"><img
+			height="100"></a></td>
+			
+				<td><a href="salvarProduto?acao=listartodos"><img
 			alt="Produto" title="Produtos" src="resources/img/Produto.png"
-			width="100" height="100"></a>
+			width="100" height="100"></a></td>
+			</tr>
+			<tr>
+			<td>Card Usuário</td>
+			<td>Card Produto</td>
+			</tr>
+
+		</table>
+
+		 
 	</center>
 </body>
 </html>
