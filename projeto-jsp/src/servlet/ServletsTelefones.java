@@ -33,30 +33,39 @@ public class ServletsTelefones extends HttpServlet {
 
 			String acao = request.getParameter("acao");
 			String user = request.getParameter("user");
-			BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
 
-			if (acao.equalsIgnoreCase("addFone")) {
+			if (user != null) {
 
-				request.getSession().setAttribute("userEscolhido", beanCursoJsp);
-				request.setAttribute("userEscolhido", beanCursoJsp);
+				BeanCursoJsp beanCursoJsp = daoUsuario.consultar(user);
 
-				RequestDispatcher view = request.getRequestDispatcher("/telefones.jsp");
-				request.setAttribute("telefones", daoTelefones.listar(beanCursoJsp.getId()));
+				if (acao.equalsIgnoreCase("addFone")) {
+
+					request.getSession().setAttribute("userEscolhido", beanCursoJsp);
+					request.setAttribute("userEscolhido", beanCursoJsp);
+
+					RequestDispatcher view = request.getRequestDispatcher("/telefones.jsp");
+					request.setAttribute("telefones", daoTelefones.listar(beanCursoJsp.getId()));
+					view.forward(request, response);
+
+				} else if (acao.equalsIgnoreCase("deleteFone")) {
+
+					String FoneId = request.getParameter("foneId");
+					daoTelefones.delete(FoneId);
+
+					RequestDispatcher view = request.getRequestDispatcher("/telefones.jsp");
+					request.setAttribute("userEscolhido", beanCursoJsp);
+					request.setAttribute("telefones", daoTelefones.listar(Long.parseLong(user)));
+					request.setAttribute("msg", "Removido com sucesso!");
+					view.forward(request, response);
+
+				}
+			} else{
+				
+				RequestDispatcher view = request.getRequestDispatcher("/cadastroUsuario.jsp");
+				request.setAttribute("usuarios", daoUsuario.listar());
 				view.forward(request, response);
-
-			} else if (acao.equalsIgnoreCase("deleteFone")) {
-
-				String FoneId = request.getParameter("foneId");
-				daoTelefones.delete(FoneId);
-
-				RequestDispatcher view = request.getRequestDispatcher("/telefones.jsp");
-				request.setAttribute("userEscolhido", beanCursoJsp);
-				request.setAttribute("telefones", daoTelefones.listar(Long.parseLong(user)));
-				request.setAttribute("msg", "Removido com sucesso!");
-				view.forward(request, response);
-
+				
 			}
-
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
