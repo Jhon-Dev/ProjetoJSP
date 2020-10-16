@@ -10,6 +10,8 @@ public class BeanCursoJsp {
 
 	private String nome;
 
+	private String sexo;
+	
 	private String fone;
 
 	private String cep;
@@ -69,6 +71,14 @@ public class BeanCursoJsp {
 		return nome;
 	}
 
+	public void setSexo(String sexo) {
+		this.sexo = sexo;
+	}
+	
+	public String getSexo() {
+		return sexo;
+	}
+	
 	public String getFone() {
 		return fone;
 	}

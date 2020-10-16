@@ -155,6 +155,9 @@ public class Usuario extends HttpServlet {
 
 			String ibge = request.getParameter("ibge");
 			
+			String sexo = request.getParameter("sexo");
+			
+			
 
 			BeanCursoJsp usuario = new BeanCursoJsp();
 
@@ -169,6 +172,7 @@ public class Usuario extends HttpServlet {
 			usuario.setCidade(cidade);
 			usuario.setEstado(estado);
 			usuario.setIbge(ibge);
+			usuario.setSexo(sexo);
 			
 			if (request.getParameter("ativo") != null 
 					&& request.getParameter("ativo").equalsIgnoreCase("on")){

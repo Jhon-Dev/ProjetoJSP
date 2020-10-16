@@ -79,14 +79,48 @@
 				
 					</tr>
 					<tr>
-						<td>Foto:</td>
-						<td><input type="file"  name="foto">
+						 <td>Sexo:</td>
+						 <td>
+						 <input type="radio" name="sexo" 
+						 
+						 <% 
+						  if (request.getAttribute("user") != null){
+
+							  BeanCursoJsp user = (BeanCursoJsp) request.getAttribute("user");
+							  if (user.getSexo().equalsIgnoreCase("masculino")){
+								  out.print(" ");
+								  out.print("checked=\"checked\"");
+								  out.print(" ");
+							  }
+						  
+						  }
+						 %>
+						 
+						  value="masculino">Masculino</input>
+						  
+						 <input type="radio" name="sexo" 
+						 
+						 						 <% 
+						  if (request.getAttribute("user") != null){
+
+							  BeanCursoJsp user = (BeanCursoJsp) request.getAttribute("user");
+							  if (user.getSexo().equalsIgnoreCase("feminino")){
+								  out.print(" ");
+								  out.print("checked=\"checked\"");
+								  out.print(" ");
+							  }
+						  
+						  }
+						 %>
+						 
+						  value="feminino">Feminino</input> 
 						
+						
+					
 						<td>Ativo:</td>
 						<td><input type="checkbox" id="ativo" name="ativo"
 						<%
-						if(request.getAttribute("user") != null) {
-							
+						if(request.getAttribute("user") != null) {							
 							BeanCursoJsp user = (BeanCursoJsp) request.getAttribute("user");
 							if (user.isAtivo()) {
 								out.print(" ");
@@ -94,8 +128,13 @@
 								out.print(" ");
 							}
 						}
-						%>
-						>
+						%>>							
+					</tr>
+					
+					<tr>
+						<td>Foto:</td>
+						<td><input type="file"  name="foto">
+						
 						</td>
 					</tr>
 					<tr>
