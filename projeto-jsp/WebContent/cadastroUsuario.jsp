@@ -138,7 +138,7 @@
 					 
 					<td><c:out value="${user.nome}"></c:out></td>
 					<td><a href="salvarTelefones?acao=addFone&user=${user.id}"><img alt="Telefones" title="Telefones" src="resources/img/telefone.png" width="23px" height="23px"></a></td>
-					<td><a href="salvarUsuario?acao=delete&user=${user.id}"><img src="resources/img/Excluir.png" alt="excluir" title="Excluir" width="20px" height="20px"> </a></td>
+					<td><a href="salvarUsuario?acao=delete&user=${user.id}" onclick="return confirm('Confirmar a exclusão?');"><img src="resources/img/Excluir.png" alt="excluir" title="Excluir" width="20px" height="20px"> </a></td>
 					<td><a href="salvarUsuario?acao=editar&user=${user.id}"><img alt="Editar" title="Editar" src="resources/img/Editar.png" width="20px" height="20px"></a></td>
 				</tr>
 

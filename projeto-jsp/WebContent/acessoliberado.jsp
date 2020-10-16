@@ -11,6 +11,7 @@
 </head>
 
 <body>
+<a href="acessoliberado.jsp"><img alt="Inicio" title="Inicio" src="resources/img/inicio.png" width="25" height="25"></a>
 <a href="index.jsp"><img alt="Sair" title="Sair" src="resources/img/Excluir.png" width="25" height="25"></a>
 
 	<center style="padding-top: 5%">

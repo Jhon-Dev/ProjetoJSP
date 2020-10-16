@@ -83,7 +83,7 @@
 					<td><c:out value="${produto.quantidade}"></c:out></td>
 					<td><fmt:formatNumber type="number" maxFractionDigits="3" value="${produto.valor}"/></td>
 
-					<td><a href="salvarProduto?acao=delete&produto=${produto.id}"><img
+					<td><a onclick="return confirm('Confirmar a exclusão?');" href="salvarProduto?acao=delete&produto=${produto.id}"><img
 							src="resources/img/Excluir.png" alt="Exluir" title="Exluir"
 							width="20px" height="20px"></a></td>
 					<td><a href="salvarProduto?acao=editar&produto=${produto.id}"><img
