@@ -23,7 +23,7 @@ public class DaoUsuario {
 
 		try {
 
-			String sql = "insert into usuario(login, senha, nome, fone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contenttype,curriculoBase64, contentTypeCurriculo, fotoBase64Miniatura) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into usuario(login, senha, nome, fone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contenttype,curriculoBase64, contentTypeCurriculo, fotoBase64Miniatura, ativo) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
@@ -40,6 +40,7 @@ public class DaoUsuario {
 			insert.setString(13, usuario.getCurriculoBase64());
 			insert.setString(14, usuario.getContentTypeCurriculo());
 			insert.setString(15, usuario.getFotoBase64Miniatura());
+			insert.setBoolean(16, usuario.isAtivo());
 			insert.execute();
 			connection.commit();
 
@@ -185,7 +186,7 @@ public class DaoUsuario {
 
 			sql.append(" update usuario set login = ?, senha = ?, nome = ?, fone = ?, ");
 			sql.append(" cep = ?, rua = ?, bairro = ?, cidade = ?, ");
-			sql.append(" estado = ?, ibge = ? ");
+			sql.append(" estado = ?, ibge = ?, ativo = ? ");
 
 			if (usuario.isAtualizarImagem()) {
 
@@ -218,34 +219,35 @@ public class DaoUsuario {
 			preparedStatement.setString(8, usuario.getCidade());
 			preparedStatement.setString(9, usuario.getEstado());
 			preparedStatement.setString(10, usuario.getIbge());
+			preparedStatement.setBoolean(11, usuario.isAtivo());
 
 			if (usuario.isAtualizarImagem()) {
-				preparedStatement.setString(11, usuario.getFotoBase64());
-				preparedStatement.setString(12, usuario.getContentType());
+				preparedStatement.setString(12, usuario.getFotoBase64());
+				preparedStatement.setString(13, usuario.getContentType());
 			}			
 
 			if (usuario.isAtualizarPdf()) {
 				if (usuario.isAtualizarPdf() && !usuario.isAtualizarImagem()) {
 					
-					preparedStatement.setString(11, usuario.getCurriculoBase64());
-					preparedStatement.setString(12, usuario.getContentTypeCurriculo());
+					preparedStatement.setString(12, usuario.getCurriculoBase64());
+					preparedStatement.setString(13, usuario.getContentTypeCurriculo());
 				} else {
 					
-					preparedStatement.setString(13, usuario.getCurriculoBase64());
-					preparedStatement.setString(14, usuario.getContentTypeCurriculo());
+					preparedStatement.setString(14, usuario.getCurriculoBase64());
+					preparedStatement.setString(15, usuario.getContentTypeCurriculo());
 				}
 
 			}else {
 				
 				if (usuario.isAtualizarImagem()) {
-					preparedStatement.setString(13, usuario.getFotoBase64Miniatura());
+					preparedStatement.setString(14, usuario.getFotoBase64Miniatura());
 				}
 
 				
 			}
 			
 			if (usuario.isAtualizarImagem() && usuario.isAtualizarPdf()) {
-				preparedStatement.setString(15, usuario.getFotoBase64Miniatura());
+				preparedStatement.setString(16, usuario.getFotoBase64Miniatura());
 			}
 
 			preparedStatement.executeUpdate();

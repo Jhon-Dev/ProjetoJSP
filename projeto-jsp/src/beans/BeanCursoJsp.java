@@ -23,6 +23,8 @@ public class BeanCursoJsp {
 	private String estado;
 	
 	private String ibge;
+	
+	private boolean ativo;
 
 	private String fotoBase64;
 
@@ -137,6 +139,14 @@ public class BeanCursoJsp {
 
 	public void setIbge(String ibge) {
 		this.ibge = ibge;
+	}	
+
+	public boolean isAtivo() {
+		return ativo;
+	}
+
+	public void setAtivo(boolean ativo) {
+		this.ativo = ativo;
 	}
 
 	public String getFotoBase64() {

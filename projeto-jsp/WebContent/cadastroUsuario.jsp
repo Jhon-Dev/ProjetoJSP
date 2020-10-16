@@ -69,26 +69,25 @@
 						<td>Estado:</td>
 						<td><input type="text" id="estado" name="estado" maxlength="50"
 							value="${user.estado}" /></td>
-					</tr>
-					<tr>
+							
 						<td>IBGE:</td>
 						<td><input type="text" id="ibge" name="ibge" maxlength="30"
 							value="${user.ibge}" /></td>
+					</tr>
+					<tr>																		
+				
 					</tr>
 					<tr>
 						<td>Foto:</td>
 						<td><input type="file"  name="foto">
 						
-						
+						<td>Ativo:</td>
+						<td><input type="checkbox" id="ativo" name="ativo"></td>
 					</tr>
-
 					<tr>
 						<td>Curriculo:</td>
 						<td><input type="file" id="curriculo" name="curriculo">
 					</tr>
-
-
-
 					<tr>
 						<td></td>
 						<td><input type="submit" value="Salvar"> <input
