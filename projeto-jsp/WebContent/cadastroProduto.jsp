@@ -49,6 +49,16 @@
 						<td><input type="text" id="valor" name="valor"placeholder = "valor" maxlength="8" data-thousands="." data-decimal="," data-precision="2"
 						value="${produto.valorEmTexto}"></td>	
 					<tr>
+					<tr>
+						<td>Categoria:</td>
+						<td><select id="categorias" name="categorias_id">
+						<c:forEach items="${categorias}" var="cat">
+						<option value="${cat.id}" id="${cat.id }">
+						${cat.nome}
+						</option>
+						</c:forEach>
+						</select>  </td>	
+					<tr>
 						<td></td>
 						<td>
 						<input type="submit" value="Salvar" style="width: 90px"> 

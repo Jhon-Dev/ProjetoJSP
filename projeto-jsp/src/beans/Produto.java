@@ -3,10 +3,17 @@ package beans;
 public class Produto {
 
 	private Long id;
+	
 	private String nome;
+	
 	private double quantidade;
+	
 	private double valor;
+	
+	private Long categoria_id;
 
+	
+	
 	
 	public Long getId() {
 		return id;
@@ -43,5 +50,13 @@ public class Produto {
 	public String getValorEmTexto() {
 		
 		return Double.toString(valor).replace('.', ',');
+	}
+	
+	public Long getCategoria_id() {
+		return categoria_id;
+	}
+
+	public void setCategoria_id(Long categoria_id) {
+		this.categoria_id = categoria_id;
 	}
 }

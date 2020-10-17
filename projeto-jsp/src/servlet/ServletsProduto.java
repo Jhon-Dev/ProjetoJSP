@@ -27,27 +27,26 @@ public class ServletsProduto extends HttpServlet {
 		try {
 			String acao = request.getParameter("acao") != null ? request.getParameter("acao") : "listartodos";
 			String produto = request.getParameter("produto");
+			
+			RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
 
 			if (acao.equalsIgnoreCase("delete")) {
-				daoProduto.delete(produto);
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
-				request.setAttribute("produtos", daoProduto.listar());
-				view.forward(request, response);
-			} else if (acao.equalsIgnoreCase("editar")) {
-
-				Produto beanCursoJsp = daoProduto.consultar(produto);
+				daoProduto.delete(produto);	
 				
-				 
-
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
-				request.setAttribute("produto", beanCursoJsp);
-				view.forward(request, response);
-			} else if (acao.equalsIgnoreCase("listartodos")) {
-
-				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
 				request.setAttribute("produtos", daoProduto.listar());
-				view.forward(request, response);
+				
+			} else if (acao.equalsIgnoreCase("editar")) {
+				Produto beanCursoJsp = daoProduto.consultar(produto);	
+				
+				request.setAttribute("produto", beanCursoJsp);
+				
+			} else if (acao.equalsIgnoreCase("listartodos")) {
+				
+				request.setAttribute("produtos", daoProduto.listar());
 			}
+
+			request.setAttribute("categorias", daoProduto.listaCategorias());
+			view.forward(request, response);
 
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -130,6 +129,7 @@ public class ServletsProduto extends HttpServlet {
 
 				RequestDispatcher view = request.getRequestDispatcher("/cadastroProduto.jsp");
 				request.setAttribute("produtos", daoProduto.listar());
+				request.setAttribute("categorias", daoProduto.listaCategorias());
 				view.forward(request, response);
 
 			} catch (Exception e) {
