@@ -59,11 +59,32 @@ public class DaoUsuario {
 		}
 	}
 
-	public List<BeanCursoJsp> listar() throws Exception {
-		List<BeanCursoJsp> listar = new ArrayList<BeanCursoJsp>();
+	/*
+	 * Metodo Consultar() responsável por consultar os Usuários do Sistema 
+	 */
 
+	
+	public List<BeanCursoJsp> listar (String descricaoconsulta) throws SQLException {
+		String sql = "select * from usuario where login <>'admin' and nome ilike '%"+descricaoconsulta+"%'";
+		return consultarUsuarios(sql);
+		
+	}
+	
+	
+	/*
+	 * Metodo listar() responsável por listar Todos os Usuários do Sistema 
+	 */
+
+	
+	public List<BeanCursoJsp> listar() throws Exception {
 		String sql = "select * from usuario where login <>'admin'";
 
+		return consultarUsuarios(sql);
+
+	}
+
+	private List<BeanCursoJsp> consultarUsuarios( String sql) throws SQLException {
+		List<BeanCursoJsp> listar = new ArrayList<BeanCursoJsp>();
 		PreparedStatement statement = connection.prepareStatement(sql);
 		ResultSet resultSet = statement.executeQuery();
 
@@ -92,7 +113,7 @@ public class DaoUsuario {
 
 			listar.add(beanCursoJsp);
 		}
-
+		
 		return listar;
 	}
 
