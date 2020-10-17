@@ -27,6 +27,13 @@ public class BeanCursoJsp {
 	private String ibge;
 	
 	private boolean ativo;
+	
+	private String perfil;
+
+	public void setTempFotoUser(String tempFotoUser) {
+		this.tempFotoUser = tempFotoUser;
+	}
+
 
 	private String fotoBase64;
 
@@ -157,6 +164,14 @@ public class BeanCursoJsp {
 
 	public void setAtivo(boolean ativo) {
 		this.ativo = ativo;
+	}
+
+	public String getPerfil() {
+		return perfil;
+	}
+
+	public void setPerfil(String perfil) {
+		this.perfil = perfil;
 	}
 
 	public String getFotoBase64() {

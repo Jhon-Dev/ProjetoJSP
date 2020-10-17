@@ -23,7 +23,9 @@ public class DaoUsuario {
 
 		try {
 
-			String sql = "insert into usuario(login, senha, nome, fone, cep, rua, bairro, cidade, estado, ibge, fotobase64, contenttype,curriculoBase64, contentTypeCurriculo, fotoBase64Miniatura, ativo, sexo) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+			String sql = "insert into usuario(login, senha, nome, fone, cep, rua, bairro, cidade, estado, ibge,"
+					+ " fotobase64, contenttype,curriculoBase64, contentTypeCurriculo, fotoBase64Miniatura, ativo, sexo, perfil)"
+					+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 			PreparedStatement insert = connection.prepareStatement(sql);
 			insert.setString(1, usuario.getLogin());
 			insert.setString(2, usuario.getSenha());
@@ -42,6 +44,7 @@ public class DaoUsuario {
 			insert.setString(15, usuario.getFotoBase64Miniatura());
 			insert.setBoolean(16, usuario.isAtivo());
 			insert.setString(17, usuario.getSexo());
+			insert.setString(18, usuario.getPerfil());  
 			insert.execute();
 			connection.commit();
 
@@ -79,12 +82,13 @@ public class DaoUsuario {
 			beanCursoJsp.setEstado(resultSet.getString("estado"));
 			beanCursoJsp.setIbge(resultSet.getString("ibge"));
 			beanCursoJsp.setContentType(resultSet.getString("contenttype"));
-			// beanCursoJsp.setFotoBase64(resultSet.getString("fotobase64"));+
+			// beanCursoJsp.setFotoBase64(resultSet.getString("fotobase64"));
 			beanCursoJsp.setFotoBase64Miniatura(resultSet.getString("fotobase64miniatura"));
 			beanCursoJsp.setCurriculoBase64(resultSet.getString("curriculoBase64"));
 			beanCursoJsp.setContentTypeCurriculo(resultSet.getString("contentTypeCurriculo"));
 			beanCursoJsp.setAtivo(resultSet.getBoolean("ativo"));
 			beanCursoJsp.setSexo(resultSet.getString("sexo"));
+			beanCursoJsp.setPerfil(resultSet.getString("perfil"));
 
 			listar.add(beanCursoJsp);
 		}
@@ -137,6 +141,7 @@ public class DaoUsuario {
 			beanCursoJsp.setContentTypeCurriculo(resultSet.getString("contentTypeCurriculo"));
 			beanCursoJsp.setAtivo(resultSet.getBoolean("ativo"));
 			beanCursoJsp.setSexo(resultSet.getString("sexo"));
+			beanCursoJsp.setPerfil(resultSet.getString("perfil"));
 
 
 
@@ -193,7 +198,7 @@ public class DaoUsuario {
 
 			sql.append(" update usuario set login = ?, senha = ?, nome = ?, fone = ?, ");
 			sql.append(" cep = ?, rua = ?, bairro = ?, cidade = ?, ");
-			sql.append(" estado = ?, ibge = ?, ativo = ?, sexo = ? ");
+			sql.append(" estado = ?, ibge = ?, ativo = ?, sexo = ?, perfil = ? ");
 
 			if (usuario.isAtualizarImagem()) {
 
@@ -228,34 +233,35 @@ public class DaoUsuario {
 			preparedStatement.setString(10, usuario.getIbge());
 			preparedStatement.setBoolean(11, usuario.isAtivo());
 			preparedStatement.setString(12, usuario.getSexo());
+			preparedStatement.setString(13, usuario.getPerfil());
 
 			if (usuario.isAtualizarImagem()) {
-				preparedStatement.setString(13, usuario.getFotoBase64());
-				preparedStatement.setString(14, usuario.getContentType());
+				preparedStatement.setString(14, usuario.getFotoBase64());
+				preparedStatement.setString(15, usuario.getContentType());
 			}			
 
 			if (usuario.isAtualizarPdf()) {
 				if (usuario.isAtualizarPdf() && !usuario.isAtualizarImagem()) {
 					
-					preparedStatement.setString(13, usuario.getCurriculoBase64());
-					preparedStatement.setString(14, usuario.getContentTypeCurriculo());
+					preparedStatement.setString(14, usuario.getCurriculoBase64());
+					preparedStatement.setString(15, usuario.getContentTypeCurriculo());
 				} else {
 					
-					preparedStatement.setString(15, usuario.getCurriculoBase64());
-					preparedStatement.setString(16, usuario.getContentTypeCurriculo());
+					preparedStatement.setString(16, usuario.getCurriculoBase64());
+					preparedStatement.setString(17, usuario.getContentTypeCurriculo());
 				}
 
 			}else {
 				
 				if (usuario.isAtualizarImagem()) {
-					preparedStatement.setString(15, usuario.getFotoBase64Miniatura());
+					preparedStatement.setString(16, usuario.getFotoBase64Miniatura());
 				}
 
 				
 			}
 			
 			if (usuario.isAtualizarImagem() && usuario.isAtualizarPdf()) {
-				preparedStatement.setString(17, usuario.getFotoBase64Miniatura());
+				preparedStatement.setString(18, usuario.getFotoBase64Miniatura());
 			}
 
 			preparedStatement.executeUpdate();
