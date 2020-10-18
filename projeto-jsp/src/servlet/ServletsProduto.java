@@ -73,6 +73,7 @@ public class ServletsProduto extends HttpServlet {
 			String nome = request.getParameter("nome");
 			String quantidade = request.getParameter("quantidade");
 			String valor = request.getParameter("valor");
+			String categoria = request.getParameter("categorias_id");
 
 			try {
 
@@ -103,6 +104,7 @@ public class ServletsProduto extends HttpServlet {
 				Produto produto = new Produto();
 				produto.setNome(nome);
 				produto.setId(!id.isEmpty() ? Long.parseLong(id) : null);
+				produto.setCategoria_id(Long.parseLong(categoria));
 
 				if (quantidade != null && !quantidade.isEmpty()) {
 					produto.setQuantidade(Double.parseDouble(quantidade));
